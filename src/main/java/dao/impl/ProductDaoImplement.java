@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProductDaoImplement implements IProductDao {
     private final Connection connection = DBConnection.getConnection();
-    private static final String QUERY_ALL_PRODUCT = "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id;";
+    private static final String QUERY_ALL_PRODUCT = "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE product.status = \"ACTIVE\";";
     private static final String QUERY_INSERT_PRODUCT = "INSERT INTO product" +
             "(serial,p_name,p_category_id,p_brand_id,p_price,p_quantity,p_description,p_image)" +
             "VALUES (?,?,?,?,?,?,?,?)";

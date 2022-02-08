@@ -1,9 +1,8 @@
-package dao.impl;
+package dao.implementDAO;
 
 import connection.DBConnection;
-import dao.IProductDao;
+import dao.interfaceDAO.IProductDao;
 import model.Product;
-import model.enums.Status;
 
 import java.sql.*;
 import java.util.ArrayList;

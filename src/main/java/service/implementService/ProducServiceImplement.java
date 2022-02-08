@@ -1,9 +1,9 @@
-package service.impl;
+package service.implementService;
 
-import dao.IProductDao;
-import dao.impl.ProductDaoImplement;
+import dao.interfaceDAO.IProductDao;
+import dao.implementDAO.ProductDaoImplement;
 import model.Product;
-import service.IProductService;
+import service.interfaceService.IProductService;
 
 import java.util.List;
 

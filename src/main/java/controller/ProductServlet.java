@@ -1,8 +1,8 @@
 package controller;
 
 import model.Product;
-import service.IProductService;
-import service.impl.ProducServiceImplement;
+import service.interfaceService.IProductService;
+import service.implementService.ProducServiceImplement;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

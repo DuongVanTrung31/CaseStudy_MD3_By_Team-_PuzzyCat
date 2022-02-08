@@ -12,13 +12,13 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> +0912 ngay mai doc tiep</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> pussycat478@gmai.com</a></li>
+                <li><a href="https://www.google.com/maps/place/34b+Đường+Mỹ+Đình,+Mỹ+Đình,+Nam+Từ+Liêm,+Hà+Nội/data=!4m2!3m1!1s0x313454b116bd4c0f:0x67e65190cb30a38c?sa=X&ved=2ahUKEwi9y9SK7O_1AhWmwosBHYJLBQUQ8gF6BAgPEAE"><i class="fa fa-map-marker"></i> 34B My Dinh - Nam Tu Lien - HN</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+                <li><a href="/login/index.jsp"><i class="fa fa-user-o"></i> Login</a></li>
             </ul>
         </div>
     </div>
@@ -59,16 +59,6 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <div>
-                            <a href="#">
-                                <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
-                            </a>
-                        </div>
-                        <!-- /Wishlist -->
-
                         <!-- Cart -->
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">

@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.implementDAO;
 
 import connection.DBConnection;
-import dao.ICategoryDao;
+import dao.interfaceDAO.ICategoryDao;
 import model.Category;
 
 import java.sql.Connection;

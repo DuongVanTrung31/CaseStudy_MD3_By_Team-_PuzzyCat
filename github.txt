@@ -1,0 +1,26 @@
+tạo remote: local
+thêm file: .gitignore
+các thao tác GIT cơ bản
+git branch + <tên branch>
+cide trên nhánh mới
+git add .
+git commit -m"commit"
+git push origin master
+git push origin <tên nhánh>
+git checkout master
+git merge <tên nhánh>
+	=> lặp lại từ bước code trên nhánh mới
+
+git clone + <url>
+git branch <tên nhánh> 
+git checkout <tên nhánh>
+code trên nhánh mới ( cá nhân )
+git add .
+git commit -m"commit" 
+git pull origin master
+git push origin <tên nhánh cá nhân>
+git checkout master
+git merge < tên nhánh >
+	=> lặp lại từ bước checkout
+
+

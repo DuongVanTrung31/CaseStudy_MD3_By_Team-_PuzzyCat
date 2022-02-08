@@ -37,7 +37,7 @@
                         <img src="../template/img/shop03.png" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Accessories<br>Collection</h3>
+                        <h3>Tablet<br>Collection</h3>
                         <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -48,10 +48,10 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="../template/img/shop02.png" alt="">
+                        <img src="../template/img/shop02.jpg" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Cameras<br>Collection</h3>
+                        <h3>Smart Phone<br>Collection</h3>
                         <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

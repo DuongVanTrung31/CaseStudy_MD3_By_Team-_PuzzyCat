@@ -43,7 +43,6 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
         rd.forward(request, response);
-//        response.sendRedirect("user/index.jsp");
     }
 }
 

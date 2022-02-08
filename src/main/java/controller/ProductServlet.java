@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/product")
+@WebServlet(name = "ProductServlet", urlPatterns = "/home")
 public class ProductServlet extends HttpServlet {
     private final IProductService productService = new ProducServiceImplement();
     @Override
@@ -41,7 +41,7 @@ public class ProductServlet extends HttpServlet {
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.getAll();
         request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("user/view/index.jsp");
         rd.forward(request, response);
     }
 }

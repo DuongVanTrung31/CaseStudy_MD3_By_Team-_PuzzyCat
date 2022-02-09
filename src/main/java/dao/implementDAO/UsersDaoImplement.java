@@ -27,7 +27,7 @@ public class UsersDaoImplement implements IUsersDao {
             "WHERE ID = ?";
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM USERS WHERE ID = ?";
     private static final String QUERY_FIND_PASS_BY_ACCOUNT = "SELECT PASSWORD FROM USERS WHERE ACCOUNT = ? AND EMAIL = ?";
-
+    private static final String QUERY_FIND_BY_USER = "SELECT ID FROM USER WHERE ACCOUNT = ? AND PASSWORD = ?";
     @Override
     public List<Users> getAll() {
         List<Users> users = new ArrayList<>();
@@ -168,4 +168,24 @@ public class UsersDaoImplement implements IUsersDao {
         }
         return rowUpdate;
     }
+
+    @Override
+    public int findByUser(Users users) {
+
+        int id = -1;
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_FIND_BY_USER);
+            statement.setString(1, users.getAccount());
+            statement.setString(2, users.getPassword());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return id;
+    }
+
+
 }

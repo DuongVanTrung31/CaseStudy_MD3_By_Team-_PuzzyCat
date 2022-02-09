@@ -33,12 +33,12 @@
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
                     <h3 class="mb-4 text-center">Type your account, please!</h3>
-                    <form action="/login?action=login" class="signin-form">
+                    <form action="/login?action=login" method="post" class="signin-form">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Username" name="account" required>
                         </div>
                         <div class="form-group">
-                            <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required>
+                            <input id="password-field" type="password" class="form-control" placeholder="Password"  name="password" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">

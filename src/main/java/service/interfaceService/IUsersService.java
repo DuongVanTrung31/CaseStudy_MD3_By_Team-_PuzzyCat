@@ -6,4 +6,5 @@ import service.IGeneralService;
 public interface IUsersService extends IGeneralService<Users> {
     String findPassByAccount(String account, String email);
     boolean updateByUser(String account,Users users);
+    int findByUser(Users users);
 }

@@ -44,4 +44,9 @@ public class UsersServiceImplement implements IUsersService {
     public boolean updateByUser(String account, Users users) {
         return usersDao.updateByUser(account,users);
     }
+
+    @Override
+    public int findByUser(Users users) {
+        return usersDao.findByUser(users);
+    }
 }

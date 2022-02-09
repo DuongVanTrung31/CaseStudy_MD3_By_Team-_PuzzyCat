@@ -53,11 +53,11 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                        <p>The cheapest and most reputation store in the world. Confirmed by PuzzyCat Team</p>
                         <ul class="footer-links">
-                            <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i>Nhà số 23, Lô TT-01, Khu đô thị MonCity, P. Hàm Nghi, Hà Nội</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>0123696969</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>puzzycat@email.com</a></li>
                         </ul>
                     </div>
                 </div>

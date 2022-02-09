@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-public interface IGeneralDao<T> {
+public interface IGeneralDAO<T> {
     List<T> getAll();
 
     boolean add(T t);

@@ -1,14 +1,14 @@
 package service.implementService;
 
-import dao.interfaceDAO.IProductDao;
-import dao.implementDAO.ProductDaoImplement;
+import dao.interfaceDAO.IProductDAO;
+import dao.implementDAO.ProductDAOImplement;
 import model.Product;
 import service.interfaceService.IProductService;
 
 import java.util.List;
 
-public class ProducServiceImplement implements IProductService {
-    private final IProductDao productDao = new ProductDaoImplement();
+public class ProductServiceImplement implements IProductService {
+    private final IProductDAO productDao = new ProductDAOImplement();
     @Override
     public List<Product> getAll() {
         return productDao.getAll();
@@ -16,22 +16,22 @@ public class ProducServiceImplement implements IProductService {
 
     @Override
     public boolean add(Product product) {
-        return false;
+        return productDao.add(product);
     }
 
     @Override
     public boolean update(int id, Product product) {
-        return false;
+        return productDao.update(id, product);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return productDao.delete(id);
     }
 
     @Override
     public Product findById(int id) {
-        return null;
+        return productDao.findById(id);
     }
 
 }

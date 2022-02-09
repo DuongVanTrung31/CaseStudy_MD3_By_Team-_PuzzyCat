@@ -9,6 +9,7 @@ git push origin master
 git push origin <tên nhánh>
 git checkout master
 git merge <tên nhánh>
+git push origin master
 	=> lặp lại từ bước code trên nhánh mới
 
 git clone + <url>
@@ -21,6 +22,7 @@ git pull origin master
 git push origin <tên nhánh cá nhân>
 git checkout master
 git merge < tên nhánh >
+git push origin master
 	=> lặp lại từ bước checkout
 
 

@@ -41,9 +41,8 @@ public class ProductServlet extends HttpServlet {
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.getAll();
         request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("user/view/index.jsp");
         rd.forward(request, response);
-//        response.sendRedirect("user/index.jsp");
     }
 }
 

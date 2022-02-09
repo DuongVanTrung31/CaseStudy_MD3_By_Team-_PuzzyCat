@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.implementDAO;
 
 import connection.DBConnection;
-import dao.IProductDao;
+import dao.interfaceDAO.IProductDAO;
 import model.Product;
 import model.enums.Status;
 
@@ -9,20 +9,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDaoImplement implements IProductDao {
+public class ProductDAOImplement implements IProductDAO {
     private final Connection connection = DBConnection.getConnection();
-    private static final String QUERY_ALL_PRODUCT = "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image " +
+    private static final String QUERY_ALL_PRODUCT =
+            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image " +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
             "WHERE product.status = \"ACTIVE\";";
-    private static final String QUERY_INSERT_PRODUCT = "INSERT INTO product" +
+    private static final String QUERY_INSERT_PRODUCT =
+            "INSERT INTO product" +
             "(serial,name,category_id,brand_id,price,quantity,description,image)" +
             "VALUES (?,?,?,?,?,?,?,?)";
-    private static final String QUERY_FIND_BY_ID = "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image,product.create,product.status " +
+    private static final String QUERY_FIND_BY_ID =
+            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image,product.create,product.status " +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
             "WHERE product.id = ?;";
     private static final String QUERY_DEL_PRODUCT = "DELETE FROM product WHERE id = ?";
     private static final String QUERY_UPDATE_PRODCUT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
-    private static final String QUERY_FIND_BY_KEYWORD = "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
+    private static final String QUERY_FIND_BY_KEYWORD =
+            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
             "WHERE category.name LIKE \"%\" + ? +\"%\" or product.name LIKE \"%\" + ? +\"%\" or brand.name LIKE \"%\" + ? +\"%\";";
 

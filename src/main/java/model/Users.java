@@ -132,4 +132,9 @@ public class Users {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public Users(String account, String password) {
+        this.account = account;
+        this.password = password;
+    }
 }

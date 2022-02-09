@@ -7,9 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="../common/head.jsp"/>
+<jsp:include page="/user/common/head.jsp"/>
 <body>
-<jsp:include page="../common/header.jsp"/>
+<jsp:include page="/user/common/header.jsp"/>
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
@@ -34,7 +34,11 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
+<<<<<<< HEAD
                         <img src="/user/template/img/product04.png" alt="">
+=======
+                        <img src="/user/template/img/shop03.png" alt="">
+>>>>>>> Huan
                     </div>
                     <div class="shop-body">
                         <h3>Tablet<br>Collection</h3>
@@ -48,7 +52,11 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
+<<<<<<< HEAD
                         <img src="/user/template/img/product07.png" alt="">
+=======
+                        <img src="/user/template/img/shop02.jpg" alt="">
+>>>>>>> Huan
                     </div>
                     <div class="shop-body">
                         <h3>Smart Phone<br>Collection</h3>
@@ -356,6 +364,6 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
-<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="/user/common/footer.jsp"/>
 </body>
 </html>

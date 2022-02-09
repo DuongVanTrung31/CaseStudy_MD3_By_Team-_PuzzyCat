@@ -1,8 +1,8 @@
 package controller;
 
 import model.Product;
-import service.IProductService;
-import service.impl.ProducServiceImplement;
+import service.interfaceService.IProductService;
+import service.implementService.ProductServiceImplement;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -10,9 +10,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/product")
+@WebServlet(name = "ProductServlet", urlPatterns = "/home")
 public class ProductServlet extends HttpServlet {
-    private final IProductService productService = new ProducServiceImplement();
+    private final IProductService productService = new ProductServiceImplement();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);

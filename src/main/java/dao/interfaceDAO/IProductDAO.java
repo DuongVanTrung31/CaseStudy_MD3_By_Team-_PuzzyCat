@@ -1,10 +1,11 @@
-package dao;
+package dao.interfaceDAO;
 
+import dao.IGeneralDAO;
 import model.Product;
 
 import java.util.List;
 
-public interface IProductDao extends IGeneralDao<Product> {
+public interface IProductDAO extends IGeneralDAO<Product> {
     List<Product> findByKeyword(String keyword);
 
     @Override

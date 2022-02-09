@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.implementDAO;
 
 import connection.DBConnection;
-import dao.IUsersDao;
+import dao.interfaceDAO.IUsersDao;
 import model.Users;
 import model.enums.Role;
 import model.enums.Status;

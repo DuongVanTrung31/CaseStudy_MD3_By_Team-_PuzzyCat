@@ -1,9 +1,9 @@
-package service.impl;
+package service.implementService;
 
-import dao.IUsersDao;
-import dao.impl.UsersDaoImplement;
+import dao.implementDAO.UsersDaoImplement;
+import dao.interfaceDAO.IUsersDao;
 import model.Users;
-import service.IUsersService;
+import service.interfaceService.IUsersService;
 
 import java.util.List;
 

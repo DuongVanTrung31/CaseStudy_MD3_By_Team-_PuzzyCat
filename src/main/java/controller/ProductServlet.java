@@ -45,4 +45,3 @@ public class ProductServlet extends HttpServlet {
         rd.forward(request, response);
     }
 }
-

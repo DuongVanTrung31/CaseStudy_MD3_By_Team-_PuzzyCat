@@ -25,10 +25,8 @@ public class ProductDAOImplement implements IProductDAO {
             "WHERE product.id = ?;";
     private static final String QUERY_DEL_PRODUCT = "DELETE FROM product WHERE id = ?";
     private static final String QUERY_UPDATE_PRODUCT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
-    private static final String QUERY_FIND_BY_KEYWORD =
-            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
-            "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
-            "WHERE (category.name LIKE \"%\" + ? +\"%\" or product.name LIKE \"%\" + ? +\"%\" or brand.name LIKE \"%\" + ? +\"%\") AND product.STATUS = \"ACTIVE\";";
+    private static final String QUERY_FIND_BY_KEYWORD = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE (category.name LIKE ? or product.name LIKE ? or brand.name LIKE ?) AND product.STATUS = \"active\";";
+
 
     @Override
     public List<Product> getAll() {
@@ -122,20 +120,21 @@ public class ProductDAOImplement implements IProductDAO {
         List<Product> products = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_FIND_BY_KEYWORD);
-            statement.setString(1, keyword);
-            statement.setString(2, keyword);
-            statement.setString(3, keyword);
+            statement.setString(1, "%"+ keyword + "%");
+            statement.setString(2, "%"+ keyword + "%");
+            statement.setString(3, "%"+ keyword + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String serial = rs.getString(1);
-                String name = rs.getString(2);
-                String category = rs.getString(3);
-                String brand = rs.getString(4);
-                double price = rs.getDouble(5);
-                int quantity = rs.getInt(6);
-                String description = rs.getString(7);
-                String imageURL = rs.getString(8);
-                products.add(new Product(serial,name,category,brand,price,quantity,description,imageURL));
+                int id = rs.getInt(1);
+                String serial = rs.getString(2);
+                String name = rs.getString(3);
+                String category = rs.getString(4);
+                String brand = rs.getString(5);
+                double price = rs.getDouble(6);
+                int quantity = rs.getInt(7);
+                String description = rs.getString(8);
+                String imageURL = rs.getString(9);
+                products.add(new Product(id,serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             e.printStackTrace();

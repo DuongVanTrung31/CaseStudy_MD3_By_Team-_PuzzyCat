@@ -32,19 +32,26 @@ public class ProductServlet extends HttpServlet {
             case "add-product":
             case "edit-product":
             case "delete-product":
+            case "laptop":
+                listLaptop(request,response);
+                break;
             default:
                 listProducts(request, response);
                 break;
         }
     }
 
+    private void listLaptop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> products = productService.findByKeyword("Laptop");
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("client/store.jsp").forward(request,response);
+    }
+
 
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.getAll();
         request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("user/view/index.jsp");
-        rd.forward(request, response);
+        request.getRequestDispatcher("client/index.jsp").forward(request,response);
     }
-
 
 }

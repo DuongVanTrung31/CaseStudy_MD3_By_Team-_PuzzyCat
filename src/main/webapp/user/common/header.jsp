@@ -37,7 +37,7 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="/home?action=find-by-keyword&keyword}">
+                        <form action="/home?action=find-by-keyword&keyword" method="get" >
                             <select class="input-select">
                                 <option value="0">All Categories</option>
                                 <option value="1">Category 01</option>

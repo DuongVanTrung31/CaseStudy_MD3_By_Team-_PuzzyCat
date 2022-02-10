@@ -28,7 +28,7 @@ public class ProductDAOImplement implements IProductDAO {
     private static final String QUERY_FIND_BY_KEYWORD =
             "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
-            "WHERE category.name LIKE \"%\" + ? +\"%\" or product.name LIKE \"%\" + ? +\"%\" or brand.name LIKE \"%\" + ? +\"%\";";
+            "WHERE (category.name LIKE \"%\" + ? +\"%\" or product.name LIKE \"%\" + ? +\"%\" or brand.name LIKE \"%\" + ? +\"%\") AND product.STATUS = \"ACTIVE\";";
 
     @Override
     public List<Product> getAll() {

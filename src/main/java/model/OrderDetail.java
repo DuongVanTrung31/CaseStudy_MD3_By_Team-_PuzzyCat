@@ -1,25 +1,30 @@
 package model;
 
-public class BillDetail {
-    private int billId;
+public class OrderDetail {
+    private int orderId;
     private int productId;
     private double total;
     private int quantity;
 
-    public BillDetail(int billId, int productId, double total, int quantity) {
-        this.billId = billId;
+    public OrderDetail(int orderId, int productId, double total, int quantity) {
+        this.orderId = orderId;
         this.productId = productId;
         this.total = total;
         this.quantity = quantity;
     }
 
-
-    public int getBillId() {
-        return billId;
+    public OrderDetail(int orderId, int productId, int quantity) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
     }
 
-    public void setBillId(int billId) {
-        this.billId = billId;
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getProductId() {

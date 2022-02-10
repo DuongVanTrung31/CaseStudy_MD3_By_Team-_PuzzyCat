@@ -17,6 +17,17 @@ public class Product {
     private Timestamp createDay;
     private Status status;
 
+    public Product(int id, String serial, String name, String category, String brand, double price, int quantity, String description, String img) {
+        this.id = id;
+        this.serial = serial;
+        this.name = name;
+        this.category = category;
+        this.brand = brand;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.img = img;
+    }
 
     public Product(int id, String serial, String name, String category, String brand, double price, int quantity, String description, String img, Timestamp createDay, Status status) {
         this.id = id;

@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductDAOImplement implements IProductDAO {
     private final Connection connection = DBConnection.getConnection();
     private static final String QUERY_ALL_PRODUCT =
-            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image " +
+            "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image " +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
             "WHERE product.status = \"ACTIVE\";";
     private static final String QUERY_INSERT_PRODUCT =
@@ -38,15 +38,16 @@ public class ProductDAOImplement implements IProductDAO {
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String serial = rs.getString(1);
-                String name = rs.getString(2);
-                String category = rs.getString(3);
-                String brand = rs.getString(4);
-                double price = rs.getDouble(5);
-                int quantity = rs.getInt(6);
-                String description = rs.getString(7);
-                String imageURL = rs.getString(8);
-                products.add(new Product(serial, name, category, brand, price, quantity, description, imageURL));
+                int id = rs.getInt(1);
+                String serial = rs.getString(2);
+                String name = rs.getString(3);
+                String category = rs.getString(4);
+                String brand = rs.getString(5);
+                double price = rs.getDouble(6);
+                int quantity = rs.getInt(7);
+                String description = rs.getString(8);
+                String imageURL = rs.getString(9);
+                products.add(new Product(id,serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

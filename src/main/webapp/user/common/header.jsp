@@ -12,7 +12,7 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
-                <li><a href="/login/index.jsp"><i class="fa fa-user-o"></i> Login</a></li>
+                <li><a href="login/index.jsp"><i class="fa fa-user-o"></i> Login</a></li>
             </ul>
         </div>
     </div>

@@ -24,7 +24,7 @@ public class ProductDAOImplement implements IProductDAO {
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
             "WHERE product.id = ?;";
     private static final String QUERY_DEL_PRODUCT = "DELETE FROM product WHERE id = ?";
-    private static final String QUERY_UPDATE_PRODCUT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
+    private static final String QUERY_UPDATE_PRODUCT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
     private static final String QUERY_FIND_BY_KEYWORD =
             "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
@@ -59,7 +59,7 @@ public class ProductDAOImplement implements IProductDAO {
     public boolean update(int id, Product product,int categoryID, int brandID) {
         boolean rowUpdate = false;
         try {
-            PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_PRODCUT);
+            PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_PRODUCT);
             statement.setString(1, product.getSerial());
             statement.setString(2, product.getName());
             statement.setInt(3, categoryID);
@@ -70,10 +70,11 @@ public class ProductDAOImplement implements IProductDAO {
             statement.setString(8, product.getImg());
             statement.setString(9, String.valueOf(product.getStatus()));
             statement.setInt(10, id);
+            rowUpdate = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  rowUpdate;
+        return rowUpdate;
     }
 
     @Override

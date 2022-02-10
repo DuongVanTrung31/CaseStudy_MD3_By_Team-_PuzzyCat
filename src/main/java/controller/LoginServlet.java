@@ -10,9 +10,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
-@WebServlet(name = "LoginServlet", value = "/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     private final IUsersService iUsersService = new UsersServiceImplement();
 
@@ -39,10 +40,10 @@ public class LoginServlet extends HttpServlet {
                 break;
         }
     }
+
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("account");
         String password = request.getParameter("password");
-
         Users users = new Users(account, password);
         int userID = iUsersService.findByUser(users);
         if (userID == -1) {
@@ -51,18 +52,17 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("message", message);
             dispatcher.forward(request, response);
         } else {
-            Role role = users.getRole();
+            Users users1 = iUsersService.findById(userID);
+            Role role = users1.getRole();
             HttpSession session = request.getSession();
             session.setAttribute("userID", userID);
             session.setAttribute("account", account);
             session.setAttribute("password", password);
             session.setAttribute("role", role);
-            if (role.equals(Role.ADMIN)){
-               response.sendRedirect("/");
-            } else if (role.equals(Role.USER)) {
-                response.sendRedirect("user/view/index.jsp");
-            } else if (role.equals(Role.STAFF)) {
-                response.sendRedirect("/");
+            if (role == Role.ADMIN){
+                response.sendRedirect("/user/view/checkout.jsp");
+            } else if (role == Role.USER) {
+                response.sendRedirect("/home");
             }
         }
     }

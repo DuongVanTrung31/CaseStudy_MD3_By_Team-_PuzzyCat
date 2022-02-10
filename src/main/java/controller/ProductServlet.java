@@ -35,14 +35,18 @@ public class ProductServlet extends HttpServlet {
             case "detail-product":
                 findById(request,response);
                 break;
-            case "find-by-keyword":
+            case "findByKeyword":
                 findByKeyword(request,response);
+                break;
+            case "store":
+                store(request,response);
                 break;
             default:
                 listProducts(request, response);
                 break;
         }
     }
+
 
     private void findById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -70,5 +74,11 @@ public class ProductServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
+    private void store(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+        List<Product> products = productService.getAll();
+        request.setAttribute("products", products);
+        RequestDispatcher rd = request.getRequestDispatcher("user/view/store.jsp");
+        rd.forward(request, response);
+    }
 
 }

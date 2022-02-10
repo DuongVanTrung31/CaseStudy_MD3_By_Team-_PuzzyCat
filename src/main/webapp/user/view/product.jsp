@@ -10,39 +10,16 @@
         <!-- row -->
         <div class="row">
             <!-- Product main img -->
-            <div class="col-md-5 col-md-push-2">
+            <div class="col-md-6">
                 <div id="product-main-img">
                     <div class="product-preview">
                         <img src="${product.getImg()}" alt="">
                     </div>
                 </div>
             </div>
-            <!-- /Product main img -->
-
-<%--            <!-- Product thumb imgs -->--%>
-<%--            <div class="col-md-2  col-md-pull-5">--%>
-<%--                <div id="product-imgs">--%>
-<%--                    <div class="product-preview">--%>
-<%--                        <img src="./img/product01.png" alt="">--%>
-<%--                    </div>--%>
-
-<%--                    <div class="product-preview">--%>
-<%--                        <img src="./img/product03.png" alt="">--%>
-<%--                    </div>--%>
-
-<%--                    <div class="product-preview">--%>
-<%--                        <img src="./img/product06.png" alt="">--%>
-<%--                    </div>--%>
-
-<%--                    <div class="product-preview">--%>
-<%--                        <img src="./img/product08.png" alt="">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- /Product thumb imgs -->--%>
 
             <!-- Product details -->
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="product-details">
                     <h2 class="product-name">${product.getName()}</h2>
                     <div>
@@ -60,21 +37,6 @@
                         <span class="product-available">In Stock</span>
                     </div>
 
-<%--                    <div class="product-options">--%>
-<%--                        <label>--%>
-<%--                            Size--%>
-<%--                            <select class="input-select">--%>
-<%--                                <option value="0">X</option>--%>
-<%--                            </select>--%>
-<%--                        </label>--%>
-<%--                        <label>--%>
-<%--                            Color--%>
-<%--                            <select class="input-select">--%>
-<%--                                <option value="0">Red</option>--%>
-<%--                            </select>--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-
                     <div class="add-to-cart">
                         <div class="qty-label">
                             Quantity
@@ -87,15 +49,10 @@
                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                     </div>
 
-                    <ul class="product-btns">
-                        <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-                        <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
-                    </ul>
-
                     <ul class="product-links">
                         <li>Category:</li>
-                        <li><a href="#">Headphones</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">${product.getCategory()}</a></li>
+
                     </ul>
 
                     <ul class="product-links">

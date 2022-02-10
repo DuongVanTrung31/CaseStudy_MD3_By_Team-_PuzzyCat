@@ -32,10 +32,34 @@ public class ProductServlet extends HttpServlet {
             case "add-product":
             case "edit-product":
             case "delete-product":
+            case "detail-product":
+                findById(request,response);
+                break;
+            case "find-by-keyword":
+                findByKeyword(request,response);
+                break;
             default:
                 listProducts(request, response);
                 break;
         }
+    }
+
+    private void findById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = null;
+        product = productService.findById(id);
+        request.setAttribute("product", product);
+        RequestDispatcher rd = request.getRequestDispatcher("user/view/product.jsp");
+        rd.forward(request,response);
+    }
+
+    private void findByKeyword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        List<Product> products = productService.findByKeyword(keyword);
+        request.setAttribute("products", products);
+        RequestDispatcher rd = request.getRequestDispatcher("user/view/store.jsp");
+        rd.forward(request,response);
+
     }
 
 

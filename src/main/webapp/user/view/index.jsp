@@ -106,7 +106,7 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">${product.getCategory()}</p>
-                                        <h3 class="product-name"><a href="#">${product.getName()}</a></h3>
+                                        <h3 class="product-name"><a href="/home?action=detail-product&id=${product.getId()}">${product.getName()}</a></h3>
                                         <h4 class="product-price">$ ${product.getPrice()}</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>

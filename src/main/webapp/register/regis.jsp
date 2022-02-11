@@ -42,7 +42,7 @@
                 <h2 class="title">Puzzy Cat Registration Form</h2>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form method="POST" >
                     <div class="form-row">
                         <div class="name">Account</div>
                         <div class="value">
@@ -82,7 +82,7 @@
                         <div class="name">Address</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="text" name="company">
+                                <input class="input--style-5" type="text" name="address">
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+                        <button href="/login?action=registration " type="submit" style="navbutton_background_color: greenyellow ">Register</button>
                     </div>
                 </form>
             </div>

@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group d-md-flex">
                             <div class="w-50">
-                                <a href="http://localhost:8088/register/regis.jsp#" style="color: #fff">Create Account</a>
+                                <a href="/register/regis.jsp" style="color: #fff">Create Account</a>
                             </div>
                             <div class="w-50 text-md-right">
                                 <a href="#" style="color: #fff">Forgot Password</a>

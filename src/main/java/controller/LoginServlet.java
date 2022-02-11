@@ -12,6 +12,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.zip.DataFormatException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -33,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 
         switch (action) {
             case "registration":
-//                registration(request, response);
+                registration(request, response);
                 break;
             case "login":
                 login(request, response);
@@ -60,10 +62,25 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("password", password);
             session.setAttribute("role", role);
             if (role == Role.ADMIN){
-                response.sendRedirect("/user/view/checkout.jsp");
+                response.sendRedirect("/client/view/checkout.jsp");
             } else if (role == Role.USER) {
                 response.sendRedirect("/home");
             }
         }
+    }
+
+    public void registration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        Date birthDate = new Date(request.getParameter("birthdate"));
+        Users users = new Users(account,password,firstName,lastName,address,email,phone,birthDate);
+        request.setAttribute("user", users);
+        iUsersService.add(users);
+        request.getRequestDispatcher("/login/index.jsp").forward(request,response);
     }
 }

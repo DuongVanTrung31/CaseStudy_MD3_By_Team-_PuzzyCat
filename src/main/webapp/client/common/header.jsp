@@ -39,9 +39,8 @@
                 <div class="col-md-6">
                     <div class="header-search">
                         <form action="<c:url value="/home?action=find"/>" method="post" >
-                            <select class="input-select">
-                                <option value="0">All Product</option>
-                            </select>
+
+
                             <input class="input" name="keyword" placeholder="Search here">
                             <button class="search-btn" type="submit">Search</button>
                         </form>

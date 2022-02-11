@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- HEADER -->
@@ -37,10 +38,9 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="/home?action=find&keyword=keyword" method="get" >
-                            <select class="input-select">
-                                <option value="0">All Product</option>
-                            </select>
+                        <form action="<c:url value="/home?action=find"/>" method="post" >
+
+
                             <input class="input" name="keyword" placeholder="Search here">
                             <button class="search-btn" type="submit">Search</button>
                         </form>

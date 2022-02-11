@@ -44,7 +44,7 @@ public class ProductDAOImplement implements IProductDAO {
                 int quantity = rs.getInt(7);
                 String description = rs.getString(8);
                 String imageURL = rs.getString(9);
-                products.add(new Product(id, serial, name, category, brand, price, quantity, description, imageURL));
+                products.add(new Product(id,serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -54,7 +54,7 @@ public class ProductDAOImplement implements IProductDAO {
 
 
     @Override
-    public boolean update(int id, Product product, int categoryID, int brandID) {
+    public boolean update(int id, Product product,int categoryID, int brandID) {
         boolean rowUpdate = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_PRODUCT);
@@ -80,7 +80,7 @@ public class ProductDAOImplement implements IProductDAO {
         boolean rowDel = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_DEL_PRODUCT);
-            statement.setInt(1, id);
+            statement.setInt(1,id);
             rowDel = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -106,7 +106,7 @@ public class ProductDAOImplement implements IProductDAO {
                 String imageURL = rs.getString(8);
                 Timestamp create = Timestamp.valueOf(rs.getString(9));
                 Status status = Status.valueOf(rs.getString(10));
-                product = new Product(id, serial, name, category, brand, price, quantity, description, imageURL, create, status);
+                product = new Product(id,serial,name,category,brand,price,quantity,description,imageURL,create,status);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,9 +119,9 @@ public class ProductDAOImplement implements IProductDAO {
         List<Product> products = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_FIND_BY_KEYWORD);
-            statement.setString(1, keyword);
-            statement.setString(2, keyword);
-            statement.setString(3, keyword);
+            statement.setString(1, "%"+ keyword + "%");
+            statement.setString(2, "%"+ keyword + "%");
+            statement.setString(3, "%"+ keyword + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);

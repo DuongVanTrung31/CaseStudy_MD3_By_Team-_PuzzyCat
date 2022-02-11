@@ -115,8 +115,8 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-brand">${product.getBrand()}</p>
-                                        <h3 class="product-name"><a href="/home?action=detail-product&id=${product.getId()}">${product.getName()}</a></h3>
-                                        <h4 class="product-price">$ ${product.getPrice()} VND<del class="product-old-price">$ ${product.getPrice() * 1.1}</del></h4>
+                                        <h3 class="product-name"><a href="/home?action=detail&id=${product.getId()}">${product.getName()}</a></h3>
+                                        <h4 class="product-price">$ ${product.getPrice()} VND<del class="product-old-price">${product.getPrice() * 1.1}</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -239,9 +239,9 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-brand">${product.brand}</p>
-                                        <h3 class="product-name"><a href="/home?action=detail-product&id=${product.id}">${product.name}</a></h3>
+                                        <h3 class="product-name"><a href="/home?action=detail&id=${product.id}">${product.name}</a></h3>
                                         <h4 class="product-price">$ ${product.price} VND
-                                            <del class="product-old-price">$ ${product.price * 1.1}</del></h4>
+                                            <del class="product-old-price">${product.price * 1.1}</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -361,7 +361,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /row -->
     </div>

@@ -35,9 +35,8 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "add-product":
-            case "edit-product":
-            case "review":
-                findListReviewById(request,response);
+            case "detail":
+                findById(request,response);
                 break;
             case "find":
                 findByKeyword(request,response);
@@ -57,24 +56,18 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void findListReviewById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        List<Review> reviews = reviewService.findListReviewById(productId);
-        request.setAttribute("reviews", reviews);
-
-    }
-
 
     private void findById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.findById(id);
+        List<Review> reviews = reviewService.findListReviewById(id);
+        request.setAttribute("reviews",reviews);
         request.setAttribute("product", product);
         request.getRequestDispatcher("client/view/product.jsp").forward(request,response);
     }
 
     private void findByKeyword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
-        request.setAttribute("keyword",keyword);
         List<Product> products = productService.findByKeyword(keyword);
         request.setAttribute("products", products);
         request.getRequestDispatcher("client/view/store.jsp").forward(request,response);

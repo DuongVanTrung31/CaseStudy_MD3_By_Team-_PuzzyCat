@@ -13,12 +13,12 @@ import java.util.List;
 
 public class ReviewDAOImplement implements IReviewDAO {
     private final Connection connection = DBConnection.getConnection();
-    private static final String QUERY_ALL_REVIEWS = "SELECT  product.ID , users.ACCOUNT, review.COMMENT" +
+    private static final String QUERY_ALL_REVIEWS = "SELECT product.ID , users.ACCOUNT, review.COMMENT" +
             "FROM ((review JOIN product ON review.product_id = product.id) JOIN users ON users.id = review.user_id);";
-    private static final String QUERY_INSERT_REVIEW = "INSERT INTO review (`PRODUCT_ID`, `USER_ID`, `COMMENT`) " + "VALUES (?,?,? );";
+    private static final String QUERY_INSERT_REVIEW = "INSERT INTO review (`PRODUCT_ID`, `USER_ID`, `COMMENT`) " + "VALUES (?,?,?);";
     private static final String QUERY_DELETE_REVIEW = "DELETE FROM review WHERE (`ID` = ?);";
-    private static final String QUERY_FIND_REVIEW_PRODUCT_BY_ID = "SELECT  product.NAME, users.ACCOUNT, review.COMMENT" +
-            "FROM ((review JOIN product ON review.product_id = product.id) JOIN users ON users.id = review.user_id)" +
+    private static final String QUERY_FIND_REVIEW_PRODUCT_BY_ID = "SELECT users.ACCOUNT, review.COMMENT " +
+            "FROM review JOIN product ON review.product_id = product.id JOIN users ON users.id = review.user_id " +
             "WHERE product.id = ?;";
 
 
@@ -63,8 +63,8 @@ public class ReviewDAOImplement implements IReviewDAO {
             statement.setInt(1, productId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
-                String userAccount = rs.getString(2);
-                String comment = rs.getString(3);
+                String userAccount = rs.getString(1);
+                String comment = rs.getString(2);
                 reviews.add(new Review(productId, userAccount,comment));
             }
         } catch (SQLException e) {

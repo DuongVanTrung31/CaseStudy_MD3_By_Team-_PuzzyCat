@@ -7,9 +7,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="/user/common/head.jsp"/>
+<c:url value="/client/template" var="url"/>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <jsp:include page="../common/head.jsp"/>
+</head>
 <body>
-<jsp:include page="/user/common/header.jsp"/>
+<jsp:include page="../common/header.jsp"/>
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
@@ -20,11 +29,11 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="/user/template/img/shop01.png" alt="">
+                        <img src="${url}/img/shop01.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Laptop<br>Collection</h3>
-                        <a href="/home?action=store" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="/home?action=laptop" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -34,7 +43,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="/user/template/img/product04.png" alt="">
+                        <img src="${url}/img/product04.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Tablet<br>Collection</h3>
@@ -48,7 +57,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="/user/template/img/product07.png" alt="">
+                        <img src="${url}/img/product07.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Smart Phone<br>Collection</h3>
@@ -77,10 +86,10 @@
                     <h3 class="title">New Products</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab1">All</a></li>
+                            <li><a data-toggle="tab" href="#tab1">Laptop</a></li>
                             <li><a data-toggle="tab" href="#tab1">Tablets</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+                            <li><a data-toggle="tab" href="#tab1">SmartPhones</a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,7 +109,7 @@
                                     <div class="product-img">
                                         <img src="${product.getImg()}" alt="">
                                         <div class="product-label">
-                                            <span class="sale">-30%</span>
+                                            <span class="sale">-10%</span>
                                             <span class="new">NEW</span>
                                         </div>
                                     </div>
@@ -356,6 +365,14 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
-<jsp:include page="/user/common/footer.jsp"/>
+<jsp:include page="../common/footer.jsp"/>
+<!-- jQuery Plugins -->
+<script src="${url}/js/jquery.min.js"></script>
+<script src="${url}/js/bootstrap.min.js"></script>
+<script src="${url}/js/slick.min.js"></script>
+<script src="${url}/js/nouislider.min.js"></script>
+<script src="${url}/js/jquery.zoom.min.js"></script>
+<script src="${url}/js/main.js"></script>
+
 </body>
 </html>

@@ -6,13 +6,13 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +0912 ngay mai doc tiep</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> pussycat478@gmai.com</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> +0948 6789</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> puzzycat478@gmai.com</a></li>
                 <li><a href="https://www.google.com/maps/place/34b+Đường+Mỹ+Đình,+Mỹ+Đình,+Nam+Từ+Liêm,+Hà+Nội/data=!4m2!3m1!1s0x313454b116bd4c0f:0x67e65190cb30a38c?sa=X&ved=2ahUKEwi9y9SK7O_1AhWmwosBHYJLBQUQ8gF6BAgPEAE"><i class="fa fa-map-marker"></i> 34B My Dinh - Nam Tu Lien - HN</a></li>
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
-                <li><a href="login/index.jsp"><i class="fa fa-user-o"></i> Login</a></li>
+                <li><a href="login/index.jsp"><i class="fa fa-user-o"></i> Login </a></li>
             </ul>
         </div>
     </div>
@@ -37,11 +37,9 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="/home?action=findByKeyword&keyword=keyword" method="get" >
+                        <form action="/home?action=find&keyword=keyword" method="get" >
                             <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option value="0">All Product</option>
                             </select>
                             <input class="input" name="keyword" placeholder="Search here">
                             <button class="search-btn" type="submit">Search</button>
@@ -79,17 +77,6 @@
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
@@ -136,7 +123,7 @@
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Categories</a></li>
+                <li><a href="#">Store</a></li>
                 <li><a href="#">Laptops</a></li>
                 <li><a href="#">Smartphones</a></li>
                 <li><a href="#">Tablets</a></li>

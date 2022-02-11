@@ -13,22 +13,19 @@ public class ProductDAOImplement implements IProductDAO {
     private final Connection connection = DBConnection.getConnection();
     private static final String QUERY_ALL_PRODUCT =
             "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image " +
-            "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
-            "WHERE product.status = \"ACTIVE\";";
+                    "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
+                    "WHERE product.status = \"ACTIVE\";";
     private static final String QUERY_INSERT_PRODUCT =
             "INSERT INTO product" +
-            "(serial,name,category_id,brand_id,price,quantity,description,image)" +
-            "VALUES (?,?,?,?,?,?,?,?)";
+                    "(serial,name,category_id,brand_id,price,quantity,description,image)" +
+                    "VALUES (?,?,?,?,?,?,?,?)";
     private static final String QUERY_FIND_BY_ID =
             "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image,product.create,product.status " +
-            "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
-            "WHERE product.id = ?;";
+                    "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
+                    "WHERE product.id = ?;";
     private static final String QUERY_DEL_PRODUCT = "DELETE FROM product WHERE id = ?";
     private static final String QUERY_UPDATE_PRODUCT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
-    private static final String QUERY_FIND_BY_KEYWORD =
-            "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image" +
-            "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
-            "WHERE (category.name LIKE \"%\" + ? +\"%\" or product.name LIKE \"%\" + ? +\"%\" or brand.name LIKE \"%\" + ? +\"%\") AND product.STATUS = \"ACTIVE\";";
+    private static final String QUERY_FIND_BY_KEYWORD = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE (category.name LIKE ? or product.name LIKE ? or brand.name LIKE ?) AND product.STATUS = \"active\";";
 
     @Override
     public List<Product> getAll() {
@@ -47,7 +44,7 @@ public class ProductDAOImplement implements IProductDAO {
                 int quantity = rs.getInt(7);
                 String description = rs.getString(8);
                 String imageURL = rs.getString(9);
-                products.add(new Product(id,serial, name, category, brand, price, quantity, description, imageURL));
+                products.add(new Product(id, serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -57,7 +54,7 @@ public class ProductDAOImplement implements IProductDAO {
 
 
     @Override
-    public boolean update(int id, Product product,int categoryID, int brandID) {
+    public boolean update(int id, Product product, int categoryID, int brandID) {
         boolean rowUpdate = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_PRODUCT);
@@ -83,7 +80,7 @@ public class ProductDAOImplement implements IProductDAO {
         boolean rowDel = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_DEL_PRODUCT);
-            statement.setInt(1,id);
+            statement.setInt(1, id);
             rowDel = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,7 +106,7 @@ public class ProductDAOImplement implements IProductDAO {
                 String imageURL = rs.getString(8);
                 Timestamp create = Timestamp.valueOf(rs.getString(9));
                 Status status = Status.valueOf(rs.getString(10));
-                product = new Product(id,serial,name,category,brand,price,quantity,description,imageURL,create,status);
+                product = new Product(id, serial, name, category, brand, price, quantity, description, imageURL, create, status);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,15 +124,16 @@ public class ProductDAOImplement implements IProductDAO {
             statement.setString(3, keyword);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String serial = rs.getString(1);
-                String name = rs.getString(2);
-                String category = rs.getString(3);
-                String brand = rs.getString(4);
-                double price = rs.getDouble(5);
-                int quantity = rs.getInt(6);
-                String description = rs.getString(7);
-                String imageURL = rs.getString(8);
-                products.add(new Product(serial,name,category,brand,price,quantity,description,imageURL));
+                int id = rs.getInt(1);
+                String serial = rs.getString(2);
+                String name = rs.getString(3);
+                String category = rs.getString(4);
+                String brand = rs.getString(5);
+                double price = rs.getDouble(6);
+                int quantity = rs.getInt(7);
+                String description = rs.getString(8);
+                String imageURL = rs.getString(9);
+                products.add(new Product(id, serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             e.printStackTrace();

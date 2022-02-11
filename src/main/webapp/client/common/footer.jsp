@@ -137,11 +137,3 @@
     <!-- /bottom footer -->
 </footer>
 <!-- /FOOTER -->
-
-<!-- jQuery Plugins -->
-<script src="/user/template/js/jquery.min.js"></script>
-<script src="/user/template/js/bootstrap.min.js"></script>
-<script src="/user/template/js/slick.min.js"></script>
-<script src="/user/template/js/nouislider.min.js"></script>
-<script src="/user/template/js/jquery.zoom.min.js"></script>
-<script src="/user/template/js/main.js"></script>

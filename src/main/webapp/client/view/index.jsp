@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -83,13 +84,13 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">New Products</h3>
+                    <h3  class="title">New Products</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">All</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Laptop</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Tablets</a></li>
-                            <li><a data-toggle="tab" href="#tab1">SmartPhones</a></li>
+                            <li class="${active1}"><a  href="/home">All</a></li>
+                            <li class="${active2}"><a href="/home?action=laptop">Laptop</a></li>
+                            <li class="${active3}"><a href="/home?action=tablet">Tablets</a></li>
+                            <li class="${active4}"><a href="/home?action=smart-phone">SmartPhones</a></li>
                         </ul>
                     </div>
                 </div>

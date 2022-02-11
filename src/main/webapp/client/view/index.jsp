@@ -86,10 +86,10 @@
                     <h3 class="title">New Products</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">All</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Laptop</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Tablets</a></li>
-                            <li><a data-toggle="tab" href="#tab1">SmartPhones</a></li>
+                            <li class="${active1}"><a href="/home">All</a></li>
+                            <li class="${active2}"><a href="/home?action=laptop">Laptop</a></li>
+                            <li class="${active3}"><a href="/home?action=tablet">Tablets</a></li>
+                            <li class="${active4}"><a href="/home?action=smartphone">SmartPhones</a></li>
                         </ul>
                     </div>
                 </div>
@@ -114,9 +114,9 @@
                                         </div>
                                     </div>
                                     <div class="product-body">
-                                        <p class="product-category">${product.getCategory()}</p>
+                                        <p class="product-brand">${product.getBrand()}</p>
                                         <h3 class="product-name"><a href="/home?action=detail-product&id=${product.getId()}">${product.getName()}</a></h3>
-                                        <h4 class="product-price">$ ${product.getPrice()}</h4>
+                                        <h4 class="product-price">$ ${product.getPrice()} VND<del class="product-old-price">$ ${product.getPrice() * 1.1}</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -210,10 +210,10 @@
                     <h3 class="title">Top selling</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+                            <li class="${active1}"><a href="/home">All</a></li>
+                            <li class="${active2}"><a href="/home?action=laptop">Laptop</a></li>
+                            <li class="${active3}"><a href="/home?action=tablet">Tablets</a></li>
+                            <li class="${active4}"><a href="/home?action=smartphone">SmartPhones</a></li>
                         </ul>
                     </div>
                 </div>
@@ -227,19 +227,21 @@
                         <!-- tab -->
                         <div id="tab2" class="tab-pane fade in active">
                             <div class="products-slick" data-nav="#slick-nav-2">
+                                <c:forEach items="${requestScope.products}" var="product">
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="template/img/product06.png" alt="">
+                                        <img src="${product.img}" alt="">
                                         <div class="product-label">
-                                            <span class="sale">-30%</span>
+                                            <span class="sale">-10%</span>
                                             <span class="new">NEW</span>
                                         </div>
                                     </div>
                                     <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                        <p class="product-brand">${product.brand}</p>
+                                        <h3 class="product-name"><a href="/home?action=detail-product&id=${product.id}">${product.name}</a></h3>
+                                        <h4 class="product-price">$ ${product.price} VND
+                                            <del class="product-old-price">$ ${product.price * 1.1}</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -258,6 +260,7 @@
                                     </div>
                                 </div>
                                 <!-- /product -->
+                                </c:forEach>
                             </div>
                             <div id="slick-nav-2" class="products-slick-nav"></div>
                         </div>

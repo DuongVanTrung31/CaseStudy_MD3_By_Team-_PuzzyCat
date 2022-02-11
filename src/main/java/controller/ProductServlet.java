@@ -18,6 +18,7 @@ public class ProductServlet extends HttpServlet {
         action(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);
@@ -35,14 +36,20 @@ public class ProductServlet extends HttpServlet {
             case "detail-product":
                 findById(request,response);
                 break;
-            case "findByKeyword":
+            case "find":
                 findByKeyword(request,response);
                 break;
             case "laptop":
-                storeLaptop(request,response);
+                laptopHome(request,response);
+                break;
+            case "smartphone":
+                smartPhoneHome(request,response);
+                break;
+            case "tablet":
+                tabletHome(request,response);
                 break;
             default:
-                listProducts(request, response);
+                allProductHome(request, response);
                 break;
         }
     }
@@ -57,23 +64,40 @@ public class ProductServlet extends HttpServlet {
 
     private void findByKeyword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
+        request.setAttribute("keyword",keyword);
         List<Product> products = productService.findByKeyword(keyword);
         request.setAttribute("products", products);
         request.getRequestDispatcher("client/view/store.jsp").forward(request,response);
     }
 
 
-    private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void allProductHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.getAll();
+        request.setAttribute("active1", "active");
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("client/view/index.jsp");
         rd.forward(request, response);
     }
 
-    private void storeLaptop(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+    private void laptopHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         List<Product> products = productService.findByKeyword("Laptop");
+        request.setAttribute("active2", "active");
         request.setAttribute("products", products);
-        request.getRequestDispatcher("client/view/store.jsp").forward(request, response);
+        request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
     }
 
+
+    private void tabletHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+        List<Product> products = productService.findByKeyword("Tablet");
+        request.setAttribute("active3", "active");
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
+    }
+
+    private void smartPhoneHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+        List<Product> products = productService.findByKeyword("SmartPhone");
+        request.setAttribute("active4", "active");
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
+    }
 }

@@ -116,7 +116,7 @@
                                     <div class="product-body">
                                         <p class="product-brand">${product.getBrand()}</p>
                                         <h3 class="product-name"><a href="/home?action=detail&id=${product.getId()}">${product.getName()}</a></h3>
-                                        <h4 class="product-price">$ ${product.getPrice()} VND<del class="product-old-price">${product.getPrice() * 1.1}</del></h4>
+                                        <h4 class="product-price">$ ${product.getPrice()} VND <del class="product-old-price">${product.getPrice() * 1.1}</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -284,53 +284,57 @@
         <div class="row">
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title">Top selling</h4>
+                    <h4 class="title">Top Laptop</h4>
                     <div class="section-nav">
                         <div id="slick-nav-3" class="products-slick-nav"></div>
                     </div>
                 </div>
 
                 <div class="products-widget-slick" data-nav="#slick-nav-3">
-                    <div>
+                        <c:forEach items="${laptops}" var="lap">
+                        <div>
                         <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="template/img/product07.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            <div class="product-widget">
+                                <div class="product-img">
+                                    <img src="${lap.img}" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">${lap.brand}</p>
+                                    <h3 class="product-name"><a href="/home?action=detail&id=${lap.id}">${lap.name}</a></h3>
+                                    <h4 class="product-price">$ ${lap.price} VND <del class="product-old-price">${lap.price * 1.1}</del></h4>
+                                </div>
                             </div>
                         </div>
                         <!-- /product widget -->
-                    </div>
+                        </c:forEach>
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title">Top selling</h4>
+                    <h4 class="title">Top SmartPhone</h4>
                     <div class="section-nav">
                         <div id="slick-nav-4" class="products-slick-nav"></div>
                     </div>
                 </div>
 
                 <div class="products-widget-slick" data-nav="#slick-nav-4">
-                    <div>
+                    <c:forEach begin="0" end="${sms.size()-1}"  var="i">
+                        <div>
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="template/img/product04.png" alt="">
+                                <img src="${sms.get(i).img}" alt="">
                             </div>
                             <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                <p class="product-category">${sms.get(i).brand}</p>
+                                <h3 class="product-name"><a href="/home?action=detail&id=${sms.get(i).id}">${sms.get(i).name}</a></h3>
+                                <h4 class="product-price">$ ${sms.get(i).price} VND <del class="product-old-price">${sms.get(i).price * 1.1}</del></h4>
                             </div>
                         </div>
-                        <!-- /product widget -->
-                    </div>
+                            <!-- /product widget -->
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
 
@@ -338,27 +342,29 @@
 
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
-                    <h4 class="title">Top selling</h4>
+                    <h4 class="title">Top Tablet</h4>
                     <div class="section-nav">
                         <div id="slick-nav-5" class="products-slick-nav"></div>
                     </div>
                 </div>
 
                 <div class="products-widget-slick" data-nav="#slick-nav-5">
-                    <div>
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="template/img/product01.png" alt="">
+                        <c:forEach begin="0" end="${tablets.size()-1}" var="i">
+                            <div>
+                            <!-- product widget -->
+                            <div class="product-widget">
+                                <div class="product-img">
+                                    <img src="${tablets.get(i).img}" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">${tablets.get(i).brand}</p>
+                                    <h3 class="product-name"><a href="/home?action=detail&id=${tablets.get(i).id}">${tablets.get(i).name}</a></h3>
+                                    <h4 class="product-price">$ ${tablets.get(i).price} VND <del class="product-old-price">${tablets.get(i).price * 1.1}</del></h4>
+                                </div>
                             </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                            <!-- /product widget -->
                             </div>
-                        </div>
-                        <!-- /product widget -->
-                    </div>
+                        </c:forEach>
                 </div>
             </div>
         </div>

@@ -124,7 +124,17 @@
                 <li class="${activen2}"><a href="/nav?action=laptop">Laptops</a></li>
                 <li class="${activen3}"><a href="/nav?action=sm">Smartphones</a></li>
                 <li class="${activen4}"><a href="/nav?action=tablet">Tablets</a></li>
-                <li class=""><a href="#">Brands</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+                        Brands
+                    </a>
+                    <div class="dropdown-menu">
+                        <c:forEach items="${brands}" var="brand">
+                        <a class="dropdown-item" href="/nav?action=search&keyword=${brand.name}">${brand.name}</a>
+                            <div class="dropdown-divider"></div>
+                        </c:forEach>
+                    </div>
+                </li>
             </ul>
             <!-- /NAV -->
         </div>

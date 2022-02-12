@@ -108,7 +108,7 @@
                             </div>
                             <div class="product-body">
                                 <p class="product-brand">${products.get(i).brand}</p>
-                                <h3 class="product-name"><a href="#">${products.get(i).name}</a></h3>
+                                <h3 class="product-name"><a href="/home?action=detail&id=${products.get(i).id}">${products.get(i).name}</a></h3>
                                 <h4 class="product-price">$ ${products.get(i).price} VND <del class="product-old-price">${products.get(i).price * 1.1}</del></h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>

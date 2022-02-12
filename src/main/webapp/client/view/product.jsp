@@ -41,7 +41,7 @@
                         <a class="review-link" href="#reviews">${reviews.size()} Review(s) | Add your review</a>
                     </div>
                     <div>
-                        <h3 class="product-price">$ ${product.getPrice()} VND<del class="product-old-price">${product.getPrice() * 1.1}</del></h3>
+                        <h3 class="product-price">$ ${product.getPrice()} VND <del class="product-old-price">${product.getPrice() * 1.1}</del></h3>
                         <span class="product-available">
                             <c:if test="${product.getQuantity() > 0}">
                                 In Stock
@@ -65,11 +65,11 @@
                     </div>
                     <ul class="product-links">
                         <li>Category:</li>
-                        <li><a href="/home?action=">${product.getCategory()}</a></li>
+                        <li><a href="/nav?action=search&keyword=${product.category}">${product.getCategory()}</a></li>
                     </ul>
                     <ul class="product-links">
                         <li>Brand:</li>
-                        <li><a href="/home?action=">${product.getBrand()}</a></li>
+                        <li><a href="/nav?action=search&keyword=${product.brand}">${product.getBrand()}</a></li>
                     </ul>
                     <ul class="product-links">
                         <li>Description:</li>
@@ -91,11 +91,11 @@
                 <div id="product-tab-2">
                     <!-- product tab nav -->
                     <ul class="tab-nav">
-                        <li><a data-toggle="tab" href="#tab1">Reviews (${reviews.size()})</a></li>
+                        <li><a data-toggle="tab" href="#reviews">Reviews (${reviews.size()})</a></li>
                     </ul>
                     <!-- /product tab nav -->
                     <!-- product tab content -->
-                    <div class="tab-content">
+                    <div>
                         <!-- tab3  -->
                         <div id="tab1" class="tab-pane fade in">
                             <div class="row">

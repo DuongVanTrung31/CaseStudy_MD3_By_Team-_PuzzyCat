@@ -2,7 +2,11 @@ package controller;
 
 import model.Product;
 import model.Review;
+import service.implementService.BrandServiceImplement;
+import service.implementService.CategoryServiceImplement;
 import service.implementService.ReviewServiceImplement;
+import service.interfaceService.IBrandService;
+import service.interfaceService.ICategoryService;
 import service.interfaceService.IProductService;
 import service.implementService.ProductServiceImplement;
 import service.interfaceService.IReviewService;
@@ -63,7 +67,7 @@ public class ProductServlet extends HttpServlet {
         List<Review> reviews = reviewService.findListReviewById(id);
         request.setAttribute("reviews",reviews);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("client/view/product.jsp").forward(request,response);
+        request.getRequestDispatcher("client/view/users.jsp").forward(request,response);
     }
 
     private void findByKeyword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {

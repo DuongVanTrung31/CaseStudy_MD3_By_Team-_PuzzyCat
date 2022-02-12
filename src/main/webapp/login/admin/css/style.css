@@ -1,0 +1,13 @@
+body {
+    background-color: cadetblue;
+}
+
+#display1, display2, display3, display4 {
+    color: black;
+    background-color: lightseagreen;
+    text-align: center;
+
+}
+#form , table, table-cate, table-brand{
+    padding: inherit;
+}

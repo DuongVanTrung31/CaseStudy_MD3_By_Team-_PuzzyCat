@@ -3,7 +3,9 @@ package controller;
 import model.Product;
 import model.Users;
 import model.enums.Role;
+import service.implementService.ProductServiceImplement;
 import service.implementService.UsersServiceImplement;
+import service.interfaceService.IProductService;
 import service.interfaceService.IUsersService;
 
 import javax.servlet.*;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     private final IUsersService iUsersService = new UsersServiceImplement();
+    private final IProductService iProductService = new ProductServiceImplement();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);
@@ -34,12 +37,16 @@ public class LoginServlet extends HttpServlet {
         switch (action) {
             case "registration":
 //                registration(request, response);
-                break;
+//                break;
             case "login":
                 login(request, response);
                 break;
         }
     }
+//
+//    private void registration(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+//        String
+//    }
 
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("account");
@@ -47,7 +54,7 @@ public class LoginServlet extends HttpServlet {
         Users users = new Users(account, password);
         int userID = iUsersService.findByUser(users);
         if (userID == -1) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login/admin/product.jsp");
             String message = "Account or password is invalid";
             request.setAttribute("message", message);
             dispatcher.forward(request, response);
@@ -60,10 +67,11 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("password", password);
             session.setAttribute("role", role);
             if (role == Role.ADMIN){
-                response.sendRedirect("/user/view/checkout.jsp");
+                response.sendRedirect("login/admin/product.jsp");
             } else if (role == Role.USER) {
                 response.sendRedirect("/home");
             }
         }
     }
+
 }

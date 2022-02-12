@@ -18,37 +18,21 @@
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
+            <form method="post" action="/nav?action=filter">
             <div id="aside" class="col-md-3">
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Categories</h3>
                     <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-1">
-                            <label for="category-1">
+                        <c:forEach begin="0" end="${categories.size()-1}" var="i">
+                        <div class="input-radio">
+                            <input type="radio" id="category-${i}" value="${categories.get(i).name}" name="category">
+                            <label for="category-${i}">
                                 <span></span>
-                                Laptops
-                                <small>(120)</small>
+                                ${categories.get(i).name}
                             </label>
                         </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-2">
-                            <label for="category-2">
-                                <span></span>
-                                Smartphones
-                                <small>(740)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-3">
-                            <label for="category-3">
-                                <span></span>
-                                Tablets
-                                <small>(1450)</small>
-                            </label>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <!-- /aside Widget -->
@@ -77,74 +61,20 @@
                 <div class="aside">
                     <h3 class="aside-title">Brand</h3>
                     <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-1">
-                            <label for="brand-1">
+                        <c:forEach begin="0" end="${brands.size()-1}" var="i">
+                        <div class="input-radio">
+                            <input type="radio" id="brand-${i}" value="${brand.get(i).name}" name="brand">
+                            <label for="brand-${i}">
                                 <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
+                                ${brands.get(i).name}
                             </label>
                         </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-2">
-                            <label for="brand-2">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-3">
-                            <label for="brand-3">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-4">
-                            <label for="brand-4">
-                                <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-5">
-                            <label for="brand-5">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-6">
-                            <label for="brand-6">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- /aside Widget -->
-
-                <!-- aside Widget -->
-                <div class="aside">
-                    <h3 class="aside-title">Top selling</h3>
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product01.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <!-- /aside Widget -->
             </div>
+            </form>
             <!-- /ASIDE -->
 
             <!-- STORE -->
@@ -159,39 +89,27 @@
                                 <option value="1">Position</option>
                             </select>
                         </label>
-
-                        <label>
-                            Show:
-                            <select class="input-select">
-                                <option value="0">20</option>
-                                <option value="1">50</option>
-                            </select>
-                        </label>
                     </div>
-                    <ul class="store-grid">
-                        <li class="active"><i class="fa fa-th"></i></li>
-                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                    </ul>
                 </div>
                 <!-- /store top filter -->
 
                 <!-- store products -->
                 <div class="row">
                     <!-- product -->
-                    <c:forEach items="${requestScope.products}" var="product">
+                    <c:forEach begin="0" end="${products.size()-1}" var="i">
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img src="${product.img}" alt="">
+                                <img src="${products.get(i).img}" alt="">
                                 <div class="product-label">
                                     <span class="sale">-10%</span>
                                     <span class="new">NEW</span>
                                 </div>
                             </div>
                             <div class="product-body">
-                                <p class="product-brand">${product.brand}</p>
-                                <h3 class="product-name"><a href="#">${product.name}</a></h3>
-                                <h4 class="product-price">$ ${product.price} VND <del class="product-old-price">${product.price * 1.1}</del></h4>
+                                <p class="product-brand">${products.get(i).brand}</p>
+                                <h3 class="product-name"><a href="#">${products.get(i).name}</a></h3>
+                                <h4 class="product-price">$ ${products.get(i).price} VND <del class="product-old-price">${products.get(i).price * 1.1}</del></h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -210,12 +128,14 @@
                             </div>
                         </div>
                     </div>
+                        <c:if test="${(i + 1)% 3 == 0}">
+                            <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
+                        </c:if>
                     <!-- /product -->
                     </c:forEach>
                 </div>
                 <!-- /store products -->
                 <!-- store bottom filter -->
-                <div class="store-filter clearfix">
                     <span class="store-qty">Showing ${products.size()} products</span>
                     <ul class="store-pagination">
                         <li class="active">1</li>

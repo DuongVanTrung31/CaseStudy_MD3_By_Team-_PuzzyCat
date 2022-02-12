@@ -38,9 +38,7 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="<c:url value="/home?action=find"/>" method="post" >
-
-
+                        <form action="<c:url value="/nav?action=search"/>" method="post" >
                             <input class="input" name="keyword" placeholder="Search here">
                             <button class="search-btn" type="submit">Search</button>
                         </form>
@@ -121,12 +119,12 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="/home">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Store</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Tablets</a></li>
+                <li class="${active1}"><a href="/home">Home</a></li>
+                <li class="${activen1}"><a href="/nav?action=store">Store All</a></li>
+                <li class="${activen2}"><a href="/nav?action=laptop">Laptops</a></li>
+                <li class="${activen3}"><a href="/nav?action=sm">Smartphones</a></li>
+                <li class="${activen4}"><a href="/nav?action=tablet">Tablets</a></li>
+                <li class=""><a href="#">Brands</a></li>
             </ul>
             <!-- /NAV -->
         </div>

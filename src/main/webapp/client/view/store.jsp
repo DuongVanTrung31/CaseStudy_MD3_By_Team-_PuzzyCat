@@ -21,6 +21,7 @@
             <form method="post" action="/nav?action=filter">
             <div id="aside" class="col-md-3">
                 <!-- aside Widget -->
+                    <button type="submit" class="btn btn-danger">Filter</button>
                 <div class="aside">
                     <h3 class="aside-title">Categories</h3>
                     <div class="checkbox-filter">
@@ -43,13 +44,13 @@
                     <div class="price-filter">
                         <div id="price-slider"></div>
                         <div class="input-number price-min">
-                            <input id="price-min" type="number">
+                            <input id="price-min" type="number" name="pmin">
                             <span class="qty-up">+</span>
                             <span class="qty-down">-</span>
                         </div>
                         <span>-</span>
                         <div class="input-number price-max">
-                            <input id="price-max" type="number">
+                            <input id="price-max" type="number" name="pmax">
                             <span class="qty-up">+</span>
                             <span class="qty-down">-</span>
                         </div>
@@ -63,7 +64,7 @@
                     <div class="checkbox-filter">
                         <c:forEach begin="0" end="${brands.size()-1}" var="i">
                         <div class="input-radio">
-                            <input type="radio" id="brand-${i}" value="${brand.get(i).name}" name="brand">
+                            <input type="radio" id="brand-${i}" value="${brands.get(i).name}" name="brand">
                             <label for="brand-${i}">
                                 <span></span>
                                 ${brands.get(i).name}
@@ -76,7 +77,6 @@
             </div>
             </form>
             <!-- /ASIDE -->
-
             <!-- STORE -->
             <div id="store" class="col-md-9">
                 <!-- store top filter -->
@@ -92,10 +92,10 @@
                     </div>
                 </div>
                 <!-- /store top filter -->
-
                 <!-- store products -->
                 <div class="row">
                     <!-- product -->
+
                     <c:forEach begin="0" end="${products.size()-1}" var="i">
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="product-body">
                                 <p class="product-brand">${products.get(i).brand}</p>
-                                <h3 class="product-name"><a href="#">${products.get(i).name}</a></h3>
+                                <h3 class="product-name"><a href="/home?action=detail&id=${products.get(i).id}">${products.get(i).name}</a></h3>
                                 <h4 class="product-price">$ ${products.get(i).price} VND <del class="product-old-price">${products.get(i).price * 1.1}</del></h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>

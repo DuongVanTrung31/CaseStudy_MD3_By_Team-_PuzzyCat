@@ -3,14 +3,14 @@ package model;
 public class OrderDetail {
     private int orderId;
     private int productId;
-    private double total;
     private int quantity;
+    private double total;
 
-    public OrderDetail(int orderId, int productId, double total, int quantity) {
+    public OrderDetail(int orderId, int productId, int quantity, double total) {
         this.orderId = orderId;
         this.productId = productId;
-        this.total = total;
         this.quantity = quantity;
+        this.total = total;
     }
 
     public OrderDetail(int orderId, int productId, int quantity) {

@@ -65,6 +65,15 @@ public class NavigationServlet extends HttpServlet {
     }
 
     private void filterForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String category = req.getParameter("category");
+        double priceMin = Double.parseDouble(req.getParameter("pmin"));
+        double priceMax = Double.parseDouble(req.getParameter("pmax"));
+        String brand = req.getParameter("brand");
+        List<Product> products = productService.filter(category,priceMin,priceMax,brand);
+        req.setAttribute("brands",brands);
+        req.setAttribute("categories",categories);
+        req.setAttribute("products", products);
+        req.getRequestDispatcher("client/view/store.jsp").forward(req,resp);
     }
 
     private void storeAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

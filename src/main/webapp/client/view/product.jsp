@@ -51,18 +51,19 @@
                             </c:if>
                         </span>
                     </div>
-
+                    <form method="post" action="/cart?action=add&id=${product.id}">
                     <div class="add-to-cart">
                         <div class="qty-label">
                             Quantity
                             <div class="input-number">
-                                <input type="number" name="qty" value="1">
+                                <input type="number" name="quantity" value="1">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>add to cart</button>
                     </div>
+                    </form>
                     <ul class="product-links">
                         <li>Category:</li>
                         <li><a href="/nav?action=search&keyword=${product.category}">${product.getCategory()}</a></li>

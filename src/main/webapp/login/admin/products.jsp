@@ -17,7 +17,20 @@
     <h3>All Product</h3>
     <p>Thông tin tất cả sản phẩm hiện có được hiển thị ở đây !!</p>
 </div>
-
+<c:if test="${requestScope.checkDel}">
+    <h1 class="danger"> Xóa sản phẩm thành công  !!!</h1>
+</c:if>
+<c:if test="${requestScope.checkDel}">
+    <h1 class="danger"> Sửa sản phẩm thành công  !!!</h1>
+</c:if>
+<div class="container-fluid">
+    <c:if test="${requestScope.checkDel == true}">
+        <h3> DELETE PRODUCT SUCCESSFUL </h3>
+    </c:if>
+    <c:if test="${requestScope.checkDel == false}">
+        <h3> DELETE PRODUCT FAILURE </h3>
+    </c:if>
+</div>
 <div class="container-fluid col-md-12">
     <div class="table-responsive">
         <table class="table table-bordered table-sm" id="table">
@@ -45,24 +58,12 @@
                     <td>${product.description}</td>
                     <td><img src="${product.img}" style="height: 100px"></td>
                     <td><a href="/admin?action=delete&id=${product.id}" class="btn btn-warning">Delete</a></td>
-                    <td><a href="/admin?action=showFormEdit&id=${product.id}&category=${requestScope.category}&brand=${requestScope.brand}" class="btn btn-info">Edit</a></td>
+                    <td><a href="/admin?action=showFormEdit&id=${product.id}" class="btn btn-info">Edit</a></td>
                 </tr>
             </c:forEach>
         </table>
     </div>
 </div>
-<c:if test="${requestScope.checkDel}">
-    <h1 class="danger"> Xóa sản phẩm thành công  !!!</h1>
-</c:if>
-<div class="container-fluid">
-    <c:if test="${requestScope.checkDel == true}">
-        <h3> DELETE PRODUCT SUCCESSFUL </h3>
-    </c:if>
-    <c:if test="${requestScope.checkDel == false}">
-        <h3> DELETE PRODUCT FAILURE </h3>
-    </c:if>
-</div>
-
 
 <div class="container-fluid">
     <h3> ADD PRODUCT</h3>

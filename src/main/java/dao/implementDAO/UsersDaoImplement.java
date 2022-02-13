@@ -18,13 +18,12 @@ public class UsersDaoImplement implements IUsersDao {
     private final Connection connection = DBConnection.getConnection();
     private static final String QUERY_ALL_USERS = "SELECT * FROM USERS";
     private static final String QUERY_INSERT_ACCOUNT_BY_ADMIN = "INSERT INTO USERS" +
-            "(ACCOUNT,PASSWORD,FIRSTNAME,LASTNAME,ADDRESS,PHONE,EMAIL,BIRTHDAY,ROLE,STATUS)" +
+            "(ACCOUNT,PASSWORD,FIRSTNAME,LASTNAME,ADDRESS,PHONE,EMAIL,BIRTHDAY,ROLE,STATUS) " +
             "VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String QUERY_DEL_USERS_BY_ADMIN = "DELETE FROM USERS WHERE ID = ?";
-    private static final String QUERY_UPDATE_BY_USER = "UPDATE USERS SET PASSWORD = ?,FIRSTNAME = ?,LASTNAME = ?,ADDRESS = ?,PHONE = ?,EMAIL= ?,BIRTHDAY =?" +
+    private static final String QUERY_UPDATE_BY_USER = "UPDATE USERS SET PASSWORD = ?,FIRSTNAME = ?,LASTNAME = ?,ADDRESS = ?,PHONE = ?,EMAIL= ?,BIRTHDAY =? " +
             "WHERE ACCOUNT = ?";
-    private static final String QUERY_UPDATE_BY_ADMIN = "UPDATE USERS SET ROLE = ?,STATUS = ?" +
-            "WHERE ID = ?";
+    private static final String QUERY_UPDATE_BY_ADMIN = "UPDATE USERS SET STATUS = ? WHERE ID = ?";
     private static final String QUERY_FIND_BY_ID = "SELECT * FROM USERS WHERE ID = ?";
     private static final String QUERY_FIND_PASS_BY_ACCOUNT = "SELECT PASSWORD FROM USERS WHERE ACCOUNT = ? AND EMAIL = ?";
     private static final String QUERY_FIND_BY_USER = "SELECT ID FROM USERS WHERE ACCOUNT = ? AND PASSWORD = ?";
@@ -81,9 +80,8 @@ public class UsersDaoImplement implements IUsersDao {
         boolean rowUpdate = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_BY_ADMIN);
-            statement.setString(1, String.valueOf(users.getRole()));
-            statement.setString(2,String.valueOf(users.getStatus()));
-            statement.setInt(3,id);
+            statement.setString(1,String.valueOf(users.getStatus()));
+            statement.setInt(2,id);
             rowUpdate = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -4,15 +4,8 @@ import model.Brand;
 import model.Product;
 import model.Review;
 import service.implementService.BrandServiceImplement;
-<<<<<<< HEAD
-import service.implementService.CategoryServiceImplement;
 import service.implementService.ReviewServiceImplement;
 import service.interfaceService.IBrandService;
-import service.interfaceService.ICategoryService;
-=======
-import service.implementService.ReviewServiceImplement;
-import service.interfaceService.IBrandService;
->>>>>>> e95c3dd9ecc8ef0f22031d54f49ec5ea649c23ca
 import service.interfaceService.IProductService;
 import service.implementService.ProductServiceImplement;
 import service.interfaceService.IReviewService;

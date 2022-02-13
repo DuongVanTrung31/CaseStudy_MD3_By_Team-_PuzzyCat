@@ -5,6 +5,7 @@ import model.Category;
 import model.Product;
 import model.Users;
 import model.enums.Role;
+import model.enums.Status;
 import service.implementService.BrandServiceImplement;
 import service.implementService.CategoryServiceImplement;
 import service.implementService.ProductServiceImplement;
@@ -78,64 +79,59 @@ public class AdminServlet extends HttpServlet {
             case "customers":
                 getAllCustomer(request,response);
                 break;
-//            case "staffs":
-//                getAllStaffs(request,response);
-//                break;
-
+            case "active":
+                activeAccount(request,response);
+                break;
+            case "blocked":
+                blockedAccount(request,response);
             default:
                 display(request,response);
         }
 
     }
 
+    private void blockedAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Users users = iUsersService.findById(id);
+        users.setStatus(Status.BLOCKED);
+        boolean check = iUsersService.update(id,users);
+        request.setAttribute("checkBlock",check);
+        getAllUsers(request,response);
+    }
+
+    private void activeAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Users users = iUsersService.findById(id);
+        users.setStatus(Status.ACTIVE);
+        boolean check = iUsersService.update(id,users);
+        request.setAttribute("checkActive",check);
+        getAllUsers(request,response);
+    }
+
 
     private void getAllTablets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = iProductService.getAll();
-        List<Product> tablets = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getCategory().equals("Tablet")){
-                tablets.add(products.get(i));
-            }
-        }
+        List<Product> tablets = iProductService.findByKeyword("tablet");
         request.setAttribute("products", tablets);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
 
     private void getAllSmartPhones(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = iProductService.getAll();
-        List<Product> smartPhones = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getCategory().equals("SmartPhone")){
-                smartPhones.add(products.get(i));
-            }
-        }
+        List<Product> smartPhones = iProductService.findByKeyword("SmartPhone");
         request.setAttribute("products", smartPhones);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
 
     private void getAllLaptops(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = iProductService.getAll();
-        List<Product> laptops = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getCategory().equals("Laptop")){
-                laptops.add(products.get(i));
-            }
-        }
+        List<Product> laptops = iProductService.findByKeyword("laptop");
         request.setAttribute("products", laptops);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
-
-//    private void getAllStaffs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<Users> users = iUsersService.getAll();
-//        List<Users> staffs = new ArrayList<>();
-//        for (int i = 0; i < users.size(); i++) {
-//            if (users.get(i).getRole().equals("STAFF")){
-//                staffs.add(users.get(i));
-//            }
-//        }
-//        request.setAttribute("users", users);
-//        request.getRequestDispatcher("login/admin/users.jsp").forward(request,response);
-//    }
 
     private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Users> users = iUsersService.getAll();
@@ -165,24 +161,19 @@ public class AdminServlet extends HttpServlet {
         List<Users> users = iUsersService.getAll();
         request.setAttribute("users", users);
         request.getRequestDispatcher("login/admin/users.jsp").forward(request,response);
-
     }
 
     private void display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Users> users = iUsersService.getAll();
-
         List<Product> products = iProductService.getAll();
         request.setAttribute("users", users);
         request.setAttribute("products", products);
-
         request.getRequestDispatcher("login/admin/system.jsp").forward(request,response);
 
     }
 
     private void getAllProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = iProductService.getAll();
-        List<Category> categories = categoryService.getAll();
-        List<Brand> brands = brandService.getAll();
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         request.setAttribute("brands", brands);
@@ -195,22 +186,21 @@ public class AdminServlet extends HttpServlet {
         List<Product> products = iProductService.getAll();
         request.setAttribute("products", products);
         request.setAttribute("checkDel", checkDelete);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
 
     private void editGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        int category = Integer.parseInt(request.getParameter("category"));
-        int brand = Integer.parseInt(request.getParameter("brand"));
         Product product = iProductService.findById(id);
+        request.setAttribute("brands",brands);
+        request.setAttribute("categories",categories);
         request.setAttribute("product", product);
-        request.setAttribute("category", category);
-        request.setAttribute("brand", brand);
         request.getRequestDispatcher("login/admin/edit.jsp").forward(request,response);
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
         String serial = request.getParameter("serial");
         String name = request.getParameter("name");
         int categoryId = Integer.parseInt(request.getParameter("category"));
@@ -220,12 +210,12 @@ public class AdminServlet extends HttpServlet {
         String description = request.getParameter("description");
         String imageURL = request.getParameter("imageURL");
         Product product = new Product(serial,name,price,quantity,description,imageURL);
-        boolean check = iProductService.update(id,product, categoryId, brandId);
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean check = iProductService.update(id , product, categoryId, brandId);
         request.setAttribute("checkEdit", check);
         List<Product> products = iProductService.getAll();
-        request.setAttribute("product", product);
-        request.setAttribute("category", categoryId);
-        request.setAttribute("brand", brandId);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.setAttribute("products", products);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
@@ -244,6 +234,8 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("checkAdd", check);
         List<Product> products = iProductService.getAll();
         request.setAttribute("products", products);
+        request.setAttribute("categories",categories);
+        request.setAttribute("brands",brands);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
 }

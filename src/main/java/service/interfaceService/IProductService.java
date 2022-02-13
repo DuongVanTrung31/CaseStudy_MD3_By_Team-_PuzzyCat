@@ -18,4 +18,12 @@ public interface IProductService extends IGeneralService<Product> {
     boolean add(Product product, int idCategory, int idBrand);
     boolean update(int id, Product product,int categoryID, int brandID);
     List<Product> filter(String categoryName,double priceLow, double priceHigh, String brandName);
+    @Override
+    boolean delete(int id);
+
+    @Override
+    List<Product> getAll();
+
+    @Override
+    Product findById(int id);
 }

@@ -5,7 +5,6 @@ import model.Item;
 import model.Product;
 import service.implementService.BrandServiceImplement;
 import service.implementService.ProductServiceImplement;
-import service.interfaceService.IBrandService;
 import service.interfaceService.IProductService;
 
 import javax.servlet.ServletException;
@@ -45,9 +44,20 @@ public class CartServlet extends HttpServlet {
             case "remove":
                 removeProduct(req,resp);
                 break;
+            case "checkout":
+                checkoutCart(req,resp);
+                break;
             default:
                 displayCart(req,resp);
         }
+    }
+
+    private void checkoutCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        session.setAttribute("cart",cart);
+        req.setAttribute("brands",brands);
+        req.getRequestDispatcher("/client/view/checkout.jsp").forward(req,resp);
     }
 
     private void removeProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,7 +70,7 @@ public class CartServlet extends HttpServlet {
         for (Item item:cart) {
             subtotal += item.getProduct().getPrice() * item.getQuantity();
         }
-        req.setAttribute("subtotal", subtotal);
+        session.setAttribute("subtotal", subtotal);
         session.setAttribute("cart",cart);
         req.setAttribute("brands",brands);
         req.getRequestDispatcher("/client/view/cart.jsp").forward(req,resp);
@@ -96,7 +106,7 @@ public class CartServlet extends HttpServlet {
         for (Item item:cart) {
             subtotal += item.getProduct().getPrice() * item.getQuantity();
         }
-        req.setAttribute("subtotal", subtotal);
+        session.setAttribute("subtotal", subtotal);
         session.setAttribute("cart",cart);
         req.setAttribute("brands",brands);
         req.getRequestDispatcher("/client/view/cart.jsp").forward(req,resp);
@@ -114,7 +124,7 @@ public class CartServlet extends HttpServlet {
         for (Item item:cart) {
             subtotal += item.getProduct().getPrice() * item.getQuantity();
         }
-        req.setAttribute("subtotal", subtotal);
+        session.setAttribute("subtotal", subtotal);
         session.setAttribute("cart",cart);
         req.setAttribute("brands",brands);
         req.getRequestDispatcher("/client/view/cart.jsp").forward(req,resp);

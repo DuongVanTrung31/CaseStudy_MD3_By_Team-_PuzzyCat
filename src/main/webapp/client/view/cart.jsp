@@ -58,7 +58,7 @@
             </tr>
             </c:forEach>
             <tr>
-                <td colspan="4"><span class="red">$ Subtotal: <fmt:formatNumber value = "${requestScope.subtotal}"/> VND</span> </td>
+                <td colspan="4"><span class="red">$ Subtotal: <fmt:formatNumber value = "${sessionScope.subtotal}"/> VND</span> </td>
             </tr>
             </tbody>
         </table>

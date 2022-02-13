@@ -2,7 +2,7 @@ package model.enums;
 
 public enum Status {
     ACTIVE(1),
-    BLOCK(0);
+    BLOCKED(0);
 
     private final int status;
 

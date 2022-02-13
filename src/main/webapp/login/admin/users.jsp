@@ -17,7 +17,12 @@
     <h3>All User</h3>
     <p>Thông tin tất cả tài khoản hiện có được hiển thị ở đây !!</p>
 </div>
-
+<c:if test="${requestScope.checkActive == true}">
+    <p>Kích hoạt active tài khoản thành công !!</p>
+</c:if>
+<c:if test="${requestScope.checkBlock == true}">
+    <p>Đã block tài khoản thành công !!</p>
+</c:if>
 <div class="container-fluid col-md-12">
     <div class="table-responsive">
 
@@ -47,8 +52,8 @@
                     <td>${user.birthDate}</td>
                     <td>${user.role}</td>
                     <td>${user.status}</td>
-                    <td><a href="" class="btn btn-warning">Delete</a></td>
-                    <td><a href="" class="btn btn-info">Edit</a></td>
+                    <td><a href="/admin?action=blocked&id=${user.id}" class="btn btn-warning">Blocked</a></td>
+                    <td><a href="/admin?action=active&id=${user.id}" class="btn btn-info">Active</a></td>
                 </tr>
             </c:forEach>
         </table>

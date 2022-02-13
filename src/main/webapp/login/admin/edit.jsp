@@ -22,9 +22,9 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Form EDIT PRODUCT </h3>
-            <form>
+            <form action="/admin?action=edit" method="post">
                 <div class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="ID" name="id" disabled>
+                    <input type="text" class="form-control" placeholder="ID" name="id" value="${requestScope.product.id}" readonly>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="SERIAL" name="serial" value="${requestScope.product.serial}">
@@ -33,10 +33,18 @@
                     <input type="text" class="form-control" placeholder="NAME" name="name" value="${requestScope.product.name}">
                 </div>
                 <div class="input-group mt-3 mb-3">
-                    <input type="number" class="form-control" placeholder="Category" name="category" value="${requestScope.category}">
-                </div>
-                <div class="input-group mt-3 mb-3">
-                    <input type="number" class="form-control" placeholder="Brand" name="brand" value="${requestScope.brand}">
+                    <p>Category</p>
+                    <select name="category">
+                        <c:forEach items="${requestScope.categories}" var="cate">
+                            <option value="${cate.id}">${cate.name}</option>
+                        </c:forEach>
+                    </select>
+                    <p>Brand</p>
+                    <select name="brand">
+                        <c:forEach items="${requestScope.brands}" var="brand">
+                            <option value="${brand.id}">${brand.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
@@ -52,9 +60,9 @@
                     <input type="text" class="form-control" placeholder="IMG LINK" name="imageURL" value="${requestScope.product.img}">
                 </div>
                 <div class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="CREATE DATE">
+                    <input type="text" class="form-control" placeholder="CREATE DATE" value="${requestScope.product.createDay}" disabled>
                 </div>
-                <input type="submit" value="EDIT PRODUCT" href="admin?action=edit&id=${requestScope.product.id}">
+                <input type="submit" value="EDIT PRODUCT" class="btn btn-success">
             </form>
         </div>
     </div>

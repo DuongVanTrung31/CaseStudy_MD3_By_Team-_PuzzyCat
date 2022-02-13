@@ -123,14 +123,12 @@
                         <div><strong>TOTAL</strong></div>
                     </div>
                     <div class="order-products">
+                        <c:forEach items="${sessionScope.cart}" var="item">
                         <div class="order-col">
-                            <div>1x Product Name Goes Here</div>
-                            <div>$980.00</div>
+                            <div>${item.quantity} x ${item.product.name}</div>
+                            <div>$ ${item.product.price * item.quantity}</div>
                         </div>
-                        <div class="order-col">
-                            <div>2x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
+                        </c:forEach>
                     </div>
                     <div class="order-col">
                         <div>Shiping</div>
@@ -138,7 +136,7 @@
                     </div>
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total">$2940.00</strong></div>
+                        <div><strong class="order-total">$ ${sessionScope.subtotal}</strong></div>
                     </div>
                 </div>
                 <div class="payment-method">

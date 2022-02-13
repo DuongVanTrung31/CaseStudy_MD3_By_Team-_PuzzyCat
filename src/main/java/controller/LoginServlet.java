@@ -3,6 +3,7 @@ package controller;
 import model.Product;
 import model.Users;
 import model.enums.Role;
+import model.enums.Status;
 import service.implementService.ProductServiceImplement;
 import service.implementService.UsersServiceImplement;
 import service.interfaceService.IProductService;
@@ -61,14 +62,15 @@ public class LoginServlet extends HttpServlet {
         } else {
             Users users1 = iUsersService.findById(userID);
             Role role = users1.getRole();
+            Status status = users1.getStatus();
             HttpSession session = request.getSession();
             session.setAttribute("userID", userID);
             session.setAttribute("account", account);
             session.setAttribute("password", password);
             session.setAttribute("role", role);
-            if (role == Role.ADMIN){
+            if (role == Role.ADMIN && status == Status.ACTIVE){
                 response.sendRedirect("login/admin/product.jsp");
-            } else if (role == Role.USER) {
+            } else if (role == Role.USER && status == Status.ACTIVE) {
                 response.sendRedirect("/home");
             }
         }

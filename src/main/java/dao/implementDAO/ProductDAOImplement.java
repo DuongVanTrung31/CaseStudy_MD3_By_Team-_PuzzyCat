@@ -23,8 +23,8 @@ public class ProductDAOImplement implements IProductDAO {
             "SELECT product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image,product.create,product.status " +
                     "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id " +
                     "WHERE product.id = ?;";
-    private static final String QUERY_DEL_PRODUCT = "DELETE FROM product WHERE id = ?";
-    private static final String QUERY_UPDATE_PRODUCT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ?,STATUS = ? WHERE ID = ?;";
+    private static final String QUERY_DEL_PRODUCT = "UPDATE product SET STATUS = \"BLOCKED\" WHERE id = ?";
+    private static final String QUERY_UPDATE_PRODUCT = "UPDATE product SET SERIAL = ?,NAME = ?,CATEGORY_ID = ?,BRAND_ID = ?,PRICE = ?,QUANTITY = ?,DESCRIPTION = ?,IMAGE = ? WHERE ID = ?;";
     private static final String QUERY_FIND_BY_KEYWORD = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE (category.name LIKE ? or product.name LIKE ? or brand.name LIKE ?) AND product.STATUS = \"active\";";
     private static final String QUERY_FILTER_BY_CATE_PRICE_BRAND = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image\n" +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE category.NAME LIKE ? and (product.PRICE BETWEEN ? and ? )and brand.NAME LIKE ? AND product.status = \"ACTIVE\";";
@@ -68,8 +68,7 @@ public class ProductDAOImplement implements IProductDAO {
             statement.setInt(6, product.getQuantity());
             statement.setString(7, product.getDescription());
             statement.setString(8, product.getImg());
-            statement.setString(9, String.valueOf(product.getStatus()));
-            statement.setInt(10, id);
+            statement.setInt(9, id);
             rowUpdate = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

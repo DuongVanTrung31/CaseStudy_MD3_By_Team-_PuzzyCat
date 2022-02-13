@@ -38,7 +38,6 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "add-product":
             case "detail":
                 findById(request,response);
                 break;

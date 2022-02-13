@@ -44,8 +44,8 @@
                     <td>${product.quantity}</td>
                     <td>${product.description}</td>
                     <td><img src="${product.img}" style="height: 100px"></td>
-                    <td><a href="admin?action=delete&id=${product.id}" class="btn btn-warning">Delete</a></td>
-                    <td><a href="admin?action=showFormEdit" class="btn btn-info">Edit</a></td>
+                    <td><a href="/admin?action=delete&id=${product.id}" class="btn btn-warning">Delete</a></td>
+                    <td><a href="/admin?action=showFormEdit&id=${product.id}&category=${requestScope.category}&brand=${requestScope.brand}" class="btn btn-info">Edit</a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -73,9 +73,9 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Form ADD PRODUCT </h3>
-            <form>
+            <form action="/admin?action=add" method="post">
                 <div class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="ID" name="id">
+                    <input type="text" class="form-control" placeholder="ID" name="id" disabled>
                 </div>
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="SERIAL" name="serial">
@@ -83,13 +83,21 @@
                 <div class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="NAME" name="name">
                 </div>
-                <div class="input-group mt-3 mb-3" name="category">
-                    <input type="number" class="form-control" placeholder="Category" name="category">
+                <div class="input-group mt-3 mb-3">
+                    <select name="category">
+                        <c:forEach items="${requestScope.categories}" var="cate">
+                            <option value="${cate.id}">${cate.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="input-group mt-3 mb-3" name="brand">
-                    <input type="number" class="form-control" placeholder="Brand" name="brand">
+                <div class="input-group mt-3 mb-3">
+                    <select name="brand">
+                        <c:forEach items="${requestScope.brands}" var="brand">
+                            <option value="${brand.id}">${brand.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="input-group mb-3" name="price">
+                <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
                     <input type="text" class="form-control" aria-label="Dollar amount" placeholder="Price" name="price">
                 </div>
@@ -103,46 +111,13 @@
                     <input type="text" class="form-control" placeholder="IMG LINK" name="imageURL">
                 </div>
                 <div class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="CREATE DATE">
+                    <input type="text" class="form-control" placeholder="CREATE DATE" disabled>
                 </div>
-                <input type="submit" value="ADD PRODUCT" href="admin/action?add">
+                <input type="submit" value="ADD PRODUCT">
             </form>
-        </div>
-        <div class="col-md-3 ">
-            <h3> ALL CATEGORY </h3>
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm" id="table-cate">
-                    <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                    </tr>
-                    <c:forEach var="cate" items="${requestScope.categories}">
-                        <tr>
-                            <td>${cate.id}</td>
-                            <td>${cate.name}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <h3> ALL BRAND </h3>
-            <div class="table-responsive">
-                <table class="table table-bordered table-sm" id="table-brand">
-                    <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                    </tr>
-                    <c:forEach var="brand" items="${requestScope.brands}">
-                        <tr>
-                            <td>${brand.id}</td>
-                            <td>${brand.name}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

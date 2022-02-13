@@ -68,6 +68,15 @@ public class Product {
         this.img = img;
     }
 
+    public Product(String serial, String name, double price, int quantity, String description, String img) {
+        this.serial = serial;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.img = img;
+    }
+
     public String getCategory() {
         return category;
     }

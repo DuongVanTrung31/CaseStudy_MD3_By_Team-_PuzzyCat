@@ -29,6 +29,8 @@ public class AdminServlet extends HttpServlet {
     private final IProductService iProductService = new ProductServiceImplement();
     private final ICategoryService categoryService = new CategoryServiceImplement();
     private final IBrandService brandService = new BrandServiceImplement();
+    private final List<Brand> brands = brandService.getAll();
+    private final List<Category> categories = categoryService.getAll();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);
     }
@@ -67,8 +69,6 @@ public class AdminServlet extends HttpServlet {
             case "tablet":
                 getAllTablets(request,response);
                 break;
-
-
             case "users":
                 getAllUsers(request,response);
                 break;
@@ -200,8 +200,12 @@ public class AdminServlet extends HttpServlet {
 
     private void editGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        int category = Integer.parseInt(request.getParameter("category"));
+        int brand = Integer.parseInt(request.getParameter("brand"));
         Product product = iProductService.findById(id);
         request.setAttribute("product", product);
+        request.setAttribute("category", category);
+        request.setAttribute("brand", brand);
         request.getRequestDispatcher("login/admin/edit.jsp").forward(request,response);
     }
 
@@ -209,57 +213,35 @@ public class AdminServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String serial = request.getParameter("serial");
         String name = request.getParameter("name");
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        String category = null;
-        for (Category c : categoryService.getAll()) {
-            if (c.getId() == categoryId){
-                category = c.getName();
-            }
-        }
-        int brandId = Integer.parseInt(request.getParameter("brandId"));
-        String brand = null;
-        for (Brand b : brandService.getAll()) {
-            if (b.getId() == categoryId){
-                brand = b.getName();
-            }
-        }
-        double price = Double.parseDouble("price");
-        int quantity = Integer.parseInt("quantity");
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int brandId = Integer.parseInt(request.getParameter("brand"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("description");
         String imageURL = request.getParameter("imageURL");
-        Product product = new Product(id,serial,name,category,brand,price,quantity,description,imageURL);
+        Product product = new Product(serial,name,price,quantity,description,imageURL);
         boolean check = iProductService.update(id,product, categoryId, brandId);
-        request.setAttribute("check", check);
+        request.setAttribute("checkEdit", check);
         List<Product> products = iProductService.getAll();
+        request.setAttribute("product", product);
+        request.setAttribute("category", categoryId);
+        request.setAttribute("brand", brandId);
         request.setAttribute("products", products);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
     }
 
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
         String serial = request.getParameter("serial");
         String name = request.getParameter("name");
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        String category = null;
-        for (Category c : categoryService.getAll()) {
-            if (c.getId() == categoryId){
-                category = c.getName();
-            }
-        }
-        int brandId = Integer.parseInt(request.getParameter("brandId"));
-        String brand = null;
-        for (Brand b : brandService.getAll()) {
-            if (b.getId() == categoryId){
-                brand = b.getName();
-            }
-        }
-        double price = Double.parseDouble("price");
-        int quantity = Integer.parseInt("quantity");
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        int brandId = Integer.parseInt(request.getParameter("brand"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("description");
         String imageURL = request.getParameter("imageURL");
-        Product product = new Product(id,serial,name,category,brand,price,quantity,description,imageURL);
+        Product product = new Product(serial,name,price,quantity,description,imageURL);
         boolean check = iProductService.add(product, categoryId, brandId);
-        request.setAttribute("check", check);
+        request.setAttribute("checkAdd", check);
         List<Product> products = iProductService.getAll();
         request.setAttribute("products", products);
         request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);

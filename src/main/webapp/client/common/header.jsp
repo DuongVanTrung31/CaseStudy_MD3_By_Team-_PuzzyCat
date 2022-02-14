@@ -13,7 +13,12 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+                <c:if test="${sessionScope.account == null}">
                 <li><a href="login/index.jsp"><i class="fa fa-user-o"></i> Login </a></li>
+                </c:if>
+                <c:if test="${sessionScope.account != null}">
+                    <li><a href="login/index.jsp"><i class="fa fa-user-o"></i>${sessionScope.account}</a></li>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -78,7 +83,7 @@
                                 </div>
                                 <div class="cart-btns">
                                     <a href="/cart">View Cart</a>
-                                    <a href="/cart?action=checkout">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/cart?action=checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>

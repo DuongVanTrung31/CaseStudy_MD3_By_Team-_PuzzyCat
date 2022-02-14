@@ -60,6 +60,11 @@
             <tr>
                 <td colspan="4"><span class="red">$ Subtotal: <fmt:formatNumber value = "${sessionScope.subtotal}"/> VND</span> </td>
             </tr>
+            <tr>
+                <td colspan="2"><a href="/nav?action=store">
+                    <button type="button" class="left-arrow-button">Continue Shopping</button></a></td>
+                <td colspan="2"><a href="/cart?action=checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a></td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -28,6 +28,7 @@ public class ProductDAOImplement implements IProductDAO {
     private static final String QUERY_FIND_BY_KEYWORD = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE (category.name LIKE ? or product.name LIKE ? or brand.name LIKE ?) AND product.STATUS = \"active\";";
     private static final String QUERY_FILTER_BY_CATE_PRICE_BRAND = "SELECT product.id,product.serial,product.name,category.name,brand.name,product.price,product.quantity,product.description,product.image\n" +
             "FROM product JOIN category ON product.category_id = category.id JOIN brand ON product.brand_id = brand.id WHERE category.NAME LIKE ? and (product.PRICE BETWEEN ? and ? )and brand.NAME LIKE ? AND product.status = \"ACTIVE\";";
+    private static final String QUERY_REDUCE_PRODCUT = "UPDATE product SET QUANITY = ? WHERE ID = ?";
 
     @Override
     public List<Product> getAll() {
@@ -46,7 +47,7 @@ public class ProductDAOImplement implements IProductDAO {
                 int quantity = rs.getInt(7);
                 String description = rs.getString(8);
                 String imageURL = rs.getString(9);
-                products.add(new Product(id,serial, name, category, brand, price, quantity, description, imageURL));
+                products.add(new Product(id, serial, name, category, brand, price, quantity, description, imageURL));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -56,7 +57,7 @@ public class ProductDAOImplement implements IProductDAO {
 
 
     @Override
-    public boolean update(int id, Product product,int categoryID, int brandID) {
+    public boolean update(int id, Product product, int categoryID, int brandID) {
         boolean rowUpdate = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_UPDATE_PRODUCT);
@@ -81,7 +82,7 @@ public class ProductDAOImplement implements IProductDAO {
         boolean rowDel = false;
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_DEL_PRODUCT);
-            statement.setInt(1,id);
+            statement.setInt(1, id);
             rowDel = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,7 +108,7 @@ public class ProductDAOImplement implements IProductDAO {
                 String imageURL = rs.getString(8);
                 Timestamp create = Timestamp.valueOf(rs.getString(9));
                 Status status = Status.valueOf(rs.getString(10));
-                product = new Product(id,serial,name,category,brand,price,quantity,description,imageURL,create,status);
+                product = new Product(id, serial, name, category, brand, price, quantity, description, imageURL, create, status);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,9 +121,9 @@ public class ProductDAOImplement implements IProductDAO {
         List<Product> products = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_FIND_BY_KEYWORD);
-            statement.setString(1, "%"+ keyword + "%");
-            statement.setString(2, "%"+ keyword + "%");
-            statement.setString(3, "%"+ keyword + "%");
+            statement.setString(1, "%" + keyword + "%");
+            statement.setString(2, "%" + keyword + "%");
+            statement.setString(3, "%" + keyword + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);
@@ -163,13 +164,13 @@ public class ProductDAOImplement implements IProductDAO {
     }
 
     @Override
-    public List<Product> filter(String categoryName,double priceLow, double priceHigh, String brandName) {
+    public List<Product> filter(String categoryName, double priceLow, double priceHigh, String brandName) {
         List<Product> products = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_FILTER_BY_CATE_PRICE_BRAND);
             statement.setString(1, categoryName);
-            statement.setDouble(2,priceLow);
-            statement.setDouble(3,priceHigh);
+            statement.setDouble(2, priceLow);
+            statement.setDouble(3, priceHigh);
             statement.setString(4, brandName);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -188,5 +189,18 @@ public class ProductDAOImplement implements IProductDAO {
             e.printStackTrace();
         }
         return products;
+    }
+
+    public boolean reduce(int quantity, int idProduct) {
+        boolean reduceRow = false;
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_REDUCE_PRODCUT);
+            statement.setInt(1, quantity);
+            statement.setInt(2, idProduct);
+            reduceRow = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reduceRow;
     }
 }

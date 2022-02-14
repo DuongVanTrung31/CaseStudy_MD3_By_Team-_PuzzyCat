@@ -65,7 +65,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("brands", brands);
         request.setAttribute("reviews",reviews);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("client/view/users.jsp").forward(request,response);
+        request.getRequestDispatcher("client/view/product.jsp").forward(request,response);
     }
 
     private void allProductHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:url value="/login/admin/common" var="url"/>
+<c:url value="/admin/common" var="url"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

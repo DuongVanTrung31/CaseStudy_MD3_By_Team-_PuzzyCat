@@ -124,8 +124,13 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="/cart?action=add&id=${product.id}">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                                        <c:if test="${product.quantity > 0}">
+                                            <a href="/cart?action=add&id=${product.id}">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                                        </c:if>
+                                        <c:if test="${product.quantity <= 0}">
+                                            <p>Sold out</p>
+                                        </c:if>
                                     </div>
                                 </div>
                                 </c:forEach>
@@ -250,8 +255,13 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
+                                        <c:if test="${product.quantity > 0}">
                                         <a href="/cart?action=add&id=${product.id}">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                                        </c:if>
+                                        <c:if test="${product.quantity <= 0}">
+                                            <p>Sold out</p>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <!-- /product -->

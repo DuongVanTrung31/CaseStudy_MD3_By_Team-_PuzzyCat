@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
         Users users = new Users(account, password);
         int userID = iUsersService.findByUser(users);
         if (userID == -1) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login/admin/product.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login/index.jsp");
             String message = "Account or password is invalid";
             request.setAttribute("message", message);
             dispatcher.forward(request, response);
@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("password", password);
             session.setAttribute("role", role);
             if (role == Role.ADMIN && status == Status.ACTIVE){
-                response.sendRedirect("login/admin/product.jsp");
+                response.sendRedirect("/admin");
             } else if (role == Role.USER && status == Status.ACTIVE) {
                 response.sendRedirect("/home");
             }

@@ -16,7 +16,7 @@
                         <ul class="dropdown-menu">
                             <!--                        forEach duyệt tên category ở dây-->
                             <!--                        sau khi product thêm category sẽ có thêm loại sp mới ngoài 3 cái đã có-->
-                            <li><a class="dropdown-item" href="admin?action=products">ALL PRODUCTS</a></li>
+                            <li><a class="dropdown-item" href="admin?action=products">CREATE AND EDIT PRODUCTS</a></li>
                             <li><a class="dropdown-item" href="admin?action=smartphone">Smart phone</a></li>
                             <li><a class="dropdown-item" href="admin?action=tablet">Tablet</a></li>
                             <li><a class="dropdown-item" href="admin?action=laptop">Laptop</a></li>
@@ -30,7 +30,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="admin?action=users">ALL USERS</a></li>
+                            <li><a class="dropdown-item" href="admin?action=users">ALL ACCOUNTS</a></li>
                             <li><a class="dropdown-item" href="admin?action=admins">Admin</a></li>
                             <li><a class="dropdown-item" href="admin?action=customers">Customer</a></li>
 <%--                            <li><a class="dropdown-item" href="admin?action=staffs">Staff</a></li>--%>

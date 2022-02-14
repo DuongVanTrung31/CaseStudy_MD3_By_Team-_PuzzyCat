@@ -79,19 +79,6 @@
             <!-- /ASIDE -->
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <!-- store top filter -->
-                <div class="store-filter clearfix">
-                    <div class="store-sort">
-                        <label>
-                            Sort By:
-                            <select class="input-select">
-                                <option value="0">Popular</option>
-                                <option value="1">Position</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                <!-- /store top filter -->
                 <!-- store products -->
                 <div class="row">
                     <!-- product -->
@@ -124,8 +111,13 @@
                                 </div>
                             </div>
                             <div class="add-to-cart">
-                                <a href="/cart?action=add&id=${products.get(i).id}">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                                <c:if test="${products.get(i).quantity <= 0}">
+                                    <p>Sold out</p>
+                                </c:if>
+                                <c:if test="${products.get(i).quantity > 0}">
+                                    <a href="/cart?action=add&id=${products.get(i).id}">
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -140,10 +132,6 @@
                     <span class="store-qty">Showing ${products.size()} products</span>
                     <ul class="store-pagination">
                         <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                     </ul>
                 </div>
                 <!-- /store bottom filter -->

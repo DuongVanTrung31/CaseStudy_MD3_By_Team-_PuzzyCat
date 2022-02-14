@@ -12,12 +12,15 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 <!-- SECTION -->
+<c:if test="${requestScope.checkOrder == true}">
+    <script>alert("Thanh toán thành công")</script>
+</c:if>
 <div class="section">
     <!-- container -->
     <div class="container">
         <!-- row -->
+        <form method="post" action="/cart?action=payment">
         <div class="row">
-
             <div class="col-md-7">
                 <!-- Billing Details -->
                 <div class="billing-details">
@@ -37,29 +40,7 @@
                         <input class="input" type="text" name="address" placeholder="Address">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="city" placeholder="City">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="country" placeholder="Country">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                    </div>
-                    <div class="form-group">
                         <input class="input" type="tel" name="tel" placeholder="Telephone">
-                    </div>
-                    <div class="form-group">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="create-account">
-                            <label for="create-account">
-                                <span></span>
-                                Create Account?
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                                <input class="input" type="password" name="password" placeholder="Enter Your Password">
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- /Billing Details -->
@@ -77,28 +58,19 @@
                         </label>
                         <div class="caption">
                             <div class="form-group">
-                                <input class="input" type="text" name="first-name" placeholder="First Name">
+                                <input class="input" type="text" name="first-name1" placeholder="First Name">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="last-name" placeholder="Last Name">
+                                <input class="input" type="text" name="last-name1" placeholder="Last Name">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email">
+                                <input class="input" type="email" name="email1" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address">
+                                <input class="input" type="text" name="address1" placeholder="Address">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="city" placeholder="City">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="country" placeholder="Country">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="Telephone">
+                                <input class="input" type="tel" name="tel1" placeholder="Telephone">
                             </div>
                         </div>
                     </div>
@@ -178,10 +150,11 @@
                         I've read and accept the <a href="#">terms & conditions</a>
                     </label>
                 </div>
-                <a href="#" class="primary-btn order-submit">Place order</a>
+                <button type="submit" class="primary-btn order-submit">Place order</button>
             </div>
             <!-- /Order Details -->
         </div>
+        </form>
         <!-- /row -->
     </div>
     <!-- /container -->

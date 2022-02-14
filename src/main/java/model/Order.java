@@ -1,19 +1,29 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Order {
     private int id;
-    private String accountUser;
-    private LocalDateTime create;
-    private LocalDateTime delivery;
+    private int idUser;
+    private LocalDate create;
+    private LocalDate delivery;
     private String status;
     private String address;
     private String phone;
 
-    public Order(int id, String accountUser, LocalDateTime create, LocalDateTime delivery, String status, String address, String phone) {
+
+    public Order(int id, int idUser,String status,String address, String phone) {
         this.id = id;
-        this.accountUser = accountUser;
+        this.idUser = idUser;
+        this.status = status;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Order(int id, int idUser, LocalDate create, LocalDate delivery, String status, String address, String phone) {
+        this.id = id;
+        this.idUser = idUser;
         this.create = create;
         this.delivery = delivery;
         this.status = status;
@@ -21,41 +31,27 @@ public class Order {
         this.phone = phone;
     }
 
-    public Order(String accountUser, LocalDateTime create, String address, String phone) {
-        this.accountUser = accountUser;
-        this.create = create;
+
+    public Order(int idUser, String address, String phone) {
+        this.idUser = idUser;
         this.address = address;
         this.phone = phone;
     }
 
-    public Order(String accountUser, String address, String phone) {
-        this.accountUser = accountUser;
-        this.address = address;
-        this.phone = phone;
-    }
 
-    public Order(String accountUser, LocalDateTime create, LocalDateTime delivery, String status, String address, String phone) {
-        this.accountUser = accountUser;
-        this.create = create;
-        this.delivery = delivery;
-        this.status = status;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public LocalDateTime getCreate() {
+    public LocalDate getCreate() {
         return create;
     }
 
-    public void setCreate(LocalDateTime create) {
+    public void setCreate(LocalDate create) {
         this.create = create;
     }
 
-    public LocalDateTime getDelivery() {
+    public LocalDate getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(LocalDateTime delivery) {
+    public void setDelivery(LocalDate delivery) {
         this.delivery = delivery;
     }
 
@@ -67,12 +63,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getAccountUser() {
-        return accountUser;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setAccountUser(String accountUser) {
-        this.accountUser = accountUser;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getStatus() {

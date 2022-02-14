@@ -30,4 +30,6 @@ public interface IProductDAO extends IGeneralDAO<Product> {
 
     @Override
     Product findById(int id);
+
+    boolean reduce(int quantity, int idProduct);
 }

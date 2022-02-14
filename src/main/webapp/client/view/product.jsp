@@ -61,7 +61,9 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>add to cart</button>
+                        <c:if test="${product.getQuantity() > 0}">
+                            <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>add to cart</button>
+                        </c:if>
                     </div>
                     </form>
                     <ul class="product-links">
@@ -207,10 +209,6 @@
                                         </c:forEach>
                                         <ul class="reviews-pagination">
                                             <li class="active">1</li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -114,7 +114,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("products", tablets);
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void getAllSmartPhones(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -122,7 +122,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("products", smartPhones);
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void getAllLaptops(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -130,7 +130,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("products", laptops);
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,7 +142,7 @@ public class AdminServlet extends HttpServlet {
             }
         }
         request.setAttribute("users", customers);
-        request.getRequestDispatcher("login/admin/users.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/users.jsp").forward(request,response);
     }
 
     private void getAllAdmins(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -154,13 +154,13 @@ public class AdminServlet extends HttpServlet {
             }
         }
         request.setAttribute("users", admins);
-        request.getRequestDispatcher("login/admin/users.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/users.jsp").forward(request,response);
     }
 
     private void getAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Users> users = iUsersService.getAll();
         request.setAttribute("users", users);
-        request.getRequestDispatcher("login/admin/users.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/users.jsp").forward(request,response);
     }
 
     private void display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -168,7 +168,7 @@ public class AdminServlet extends HttpServlet {
         List<Product> products = iProductService.getAll();
         request.setAttribute("users", users);
         request.setAttribute("products", products);
-        request.getRequestDispatcher("login/admin/system.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/system.jsp").forward(request,response);
 
     }
 
@@ -177,7 +177,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         request.setAttribute("brands", brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -188,7 +188,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("checkDel", checkDelete);
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void editGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -197,7 +197,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("brands",brands);
         request.setAttribute("categories",categories);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("login/admin/edit.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/edit.jsp").forward(request,response);
     }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -217,7 +217,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
         request.setAttribute("products", products);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -236,6 +236,6 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("products", products);
         request.setAttribute("categories",categories);
         request.setAttribute("brands",brands);
-        request.getRequestDispatcher("login/admin/products.jsp").forward(request,response);
+        request.getRequestDispatcher("admin/products.jsp").forward(request,response);
     }
 }

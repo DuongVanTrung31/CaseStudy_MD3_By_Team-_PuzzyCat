@@ -26,4 +26,5 @@ public interface IProductService extends IGeneralService<Product> {
 
     @Override
     Product findById(int id);
+    boolean reduce(int quantity, int idProduct);
 }

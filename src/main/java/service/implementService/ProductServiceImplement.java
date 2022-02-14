@@ -26,6 +26,11 @@ public class ProductServiceImplement implements IProductService {
     }
 
     @Override
+    public boolean reduce(int quantity, int idProduct) {
+        return productDao.reduce(quantity,idProduct);
+    }
+
+    @Override
     public List<Product> findByKeyword(String keyword) {
         return productDao.findByKeyword(keyword);
     }

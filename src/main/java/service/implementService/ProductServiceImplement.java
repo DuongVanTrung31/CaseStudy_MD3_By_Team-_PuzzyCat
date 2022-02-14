@@ -39,5 +39,10 @@ public class ProductServiceImplement implements IProductService {
     public boolean update(int id, Product product, int categoryID, int brandID) {
         return productDao.update(id,product,categoryID,brandID);
     }
+
+    @Override
+    public List<Product> filter(String categoryName, double priceLow, double priceHigh, String brandName) {
+        return productDao.filter(categoryName,priceLow,priceHigh,brandName);
+    }
 }
 

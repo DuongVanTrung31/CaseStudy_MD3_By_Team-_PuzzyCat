@@ -38,9 +38,7 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="<c:url value="/home?action=find"/>" method="post" >
-
-
+                        <form action="<c:url value="/nav?action=search"/>" method="post" >
                             <input class="input" name="keyword" placeholder="Search here">
                             <button class="search-btn" type="submit">Search</button>
                         </form>
@@ -86,7 +84,7 @@
                                     <h5>SUBTOTAL: $2940.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="#">View Cart</a>
+                                    <a href="/cart">View Cart</a>
                                     <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -121,12 +119,22 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Store</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Tablets</a></li>
+                <li class="${active1}"><a href="/home">Home</a></li>
+                <li class="${activen1}"><a href="/nav?action=store">Store All</a></li>
+                <li class="${activen2}"><a href="/nav?action=laptop">Laptops</a></li>
+                <li class="${activen3}"><a href="/nav?action=sm">Smartphones</a></li>
+                <li class="${activen4}"><a href="/nav?action=tablet">Tablets</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+                        Brands
+                    </a>
+                    <div class="dropdown-menu">
+                        <c:forEach items="${brands}" var="brand">
+                        <a class="dropdown-item" href="/nav?action=search&keyword=${brand.name}">${brand.name}</a>
+                            <div class="dropdown-divider"></div>
+                        </c:forEach>
+                    </div>
+                </li>
             </ul>
             <!-- /NAV -->
         </div>

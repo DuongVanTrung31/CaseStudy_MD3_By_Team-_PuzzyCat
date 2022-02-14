@@ -38,27 +38,39 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <a class="review-link" href="#">10 Review(s) | Add your review</a>
+                        <a class="review-link" href="#reviews">${reviews.size()} Review(s) | Add your review</a>
                     </div>
                     <div>
-                        <h3 class="product-price">$ ${product.getPrice()} <del class="product-old-price">$990.00</del></h3>
-                        <span class="product-available">In Stock</span>
+                        <h3 class="product-price">$ ${product.getPrice()} VND <del class="product-old-price">${product.getPrice() * 1.1}</del></h3>
+                        <span class="product-available">
+                            <c:if test="${product.getQuantity() > 0}">
+                                In Stock
+                            </c:if>
+                            <c:if test="${product.getQuantity() <= 0}">
+                                <del> Sold out </del>
+                            </c:if>
+                        </span>
                     </div>
-
+                    <form method="post" action="/cart?action=add&id=${product.id}">
                     <div class="add-to-cart">
                         <div class="qty-label">
                             Quantity
                             <div class="input-number">
-                                <input type="number">
+                                <input type="number" name="quantity" value="1">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>add to cart</button>
                     </div>
+                    </form>
                     <ul class="product-links">
                         <li>Category:</li>
-                        <li><a href="/home?action=">${product.getCategory()}</a></li>
+                        <li><a href="/nav?action=search&keyword=${product.category}">${product.getCategory()}</a></li>
+                    </ul>
+                    <ul class="product-links">
+                        <li>Brand:</li>
+                        <li><a href="/nav?action=search&keyword=${product.brand}">${product.getBrand()}</a></li>
                     </ul>
                     <ul class="product-links">
                         <li>Description:</li>
@@ -80,15 +92,13 @@
                 <div id="product-tab-2">
                     <!-- product tab nav -->
                     <ul class="tab-nav">
-
-                        <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+                        <li><a data-toggle="tab" href="#reviews">Reviews (${reviews.size()})</a></li>
                     </ul>
                     <!-- /product tab nav -->
-
                     <!-- product tab content -->
-                    <div class="tab-content">
+                    <div>
                         <!-- tab3  -->
-                        <div id="tab3" class="tab-pane fade in">
+                        <div id="tab1" class="tab-pane fade in">
                             <div class="row">
                                 <!-- Rating -->
                                 <div class="col-md-3">
@@ -173,15 +183,14 @@
                                     </div>
                                 </div>
                                 <!-- /Rating -->
-
                                 <!-- Reviews -->
                                 <div class="col-md-6">
                                     <div id="reviews">
+                                        <c:forEach items="${requestScope.reviews}" var="review">
                                         <ul class="reviews">
                                             <li>
                                                 <div class="review-heading">
-                                                    <h5 class="name">John</h5>
-                                                    <p class="date">27 DEC 2018, 8:0 PM</p>
+                                                    <h5 class="name">${review.accountUser}</h5>
                                                     <div class="review-rating">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -191,42 +200,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="review-heading">
-                                                    <h5 class="name">John</h5>
-                                                    <p class="date">27 DEC 2018, 8:0 PM</p>
-                                                    <div class="review-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o empty"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="review-heading">
-                                                    <h5 class="name">John</h5>
-                                                    <p class="date">27 DEC 2018, 8:0 PM</p>
-                                                    <div class="review-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o empty"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                                    <p>${review.comment}</p>
                                                 </div>
                                             </li>
                                         </ul>
+                                        </c:forEach>
                                         <ul class="reviews-pagination">
                                             <li class="active">1</li>
                                             <li><a href="#">2</a></li>

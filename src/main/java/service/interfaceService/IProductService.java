@@ -17,4 +17,5 @@ public interface IProductService extends IGeneralService<Product> {
     List<Product> findByKeyword(String keyword);
     boolean add(Product product, int idCategory, int idBrand);
     boolean update(int id, Product product,int categoryID, int brandID);
+    List<Product> filter(String categoryName,double priceLow, double priceHigh, String brandName);
 }

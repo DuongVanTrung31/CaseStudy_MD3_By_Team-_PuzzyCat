@@ -1,8 +1,18 @@
 package controller;
 
+import model.Brand;
 import model.Product;
 import model.Review;
+import service.implementService.BrandServiceImplement;
+<<<<<<< HEAD
+import service.implementService.CategoryServiceImplement;
 import service.implementService.ReviewServiceImplement;
+import service.interfaceService.IBrandService;
+import service.interfaceService.ICategoryService;
+=======
+import service.implementService.ReviewServiceImplement;
+import service.interfaceService.IBrandService;
+>>>>>>> e95c3dd9ecc8ef0f22031d54f49ec5ea649c23ca
 import service.interfaceService.IProductService;
 import service.implementService.ProductServiceImplement;
 import service.interfaceService.IReviewService;
@@ -17,6 +27,8 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     private final IProductService productService = new ProductServiceImplement();
     private final IReviewService reviewService = new ReviewServiceImplement();
+    private final IBrandService brandService = new BrandServiceImplement();
+    private final List<Brand> brands = brandService.getAll();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);
@@ -34,13 +46,8 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "add-product":
-            case "edit-product":
-            case "review":
-                findListReviewById(request,response);
-                break;
-            case "find":
-                findByKeyword(request,response);
+            case "detail":
+                findById(request,response);
                 break;
             case "laptop":
                 laptopHome(request,response);
@@ -57,57 +64,71 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void findListReviewById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        List<Review> reviews = reviewService.findListReviewById(productId);
-        request.setAttribute("reviews", reviews);
-
-    }
-
 
     private void findById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.findById(id);
+        List<Review> reviews = reviewService.findListReviewById(id);
+        request.setAttribute("brands", brands);
+        request.setAttribute("reviews",reviews);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("client/view/product.jsp").forward(request,response);
+        request.getRequestDispatcher("client/view/users.jsp").forward(request,response);
     }
-
-    private void findByKeyword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-        String keyword = request.getParameter("keyword");
-        request.setAttribute("keyword",keyword);
-        List<Product> products = productService.findByKeyword(keyword);
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("client/view/store.jsp").forward(request,response);
-    }
-
 
     private void allProductHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.getAll();
+        List<Product> laptops = productService.findByKeyword("laptop");
+        List<Product> sms = productService.findByKeyword("smartphone");
+        List<Product> tablets = productService.findByKeyword("tablet");
         request.setAttribute("active1", "active");
         request.setAttribute("products", products);
+        request.setAttribute("brands", brands);
+        request.setAttribute("laptops", laptops);
+        request.setAttribute("sms", sms);
+        request.setAttribute("tablets", tablets);
         RequestDispatcher rd = request.getRequestDispatcher("client/view/index.jsp");
         rd.forward(request, response);
     }
 
     private void laptopHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         List<Product> products = productService.findByKeyword("Laptop");
+        List<Product> laptops = productService.findByKeyword("laptop");
+        List<Product> sms = productService.findByKeyword("smartphone");
+        List<Product> tablets = productService.findByKeyword("tablet");
         request.setAttribute("active2", "active");
         request.setAttribute("products", products);
+        request.setAttribute("laptops", laptops);
+        request.setAttribute("sms", sms);
+        request.setAttribute("tablets", tablets);
         request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
     }
 
 
     private void tabletHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         List<Product> products = productService.findByKeyword("Tablet");
+        List<Product> laptops = productService.findByKeyword("laptop");
+        List<Product> sms = productService.findByKeyword("smartphone");
+        List<Product> tablets = productService.findByKeyword("tablet");
         request.setAttribute("active3", "active");
         request.setAttribute("products", products);
+        request.setAttribute("brands", brands);
+        request.setAttribute("laptops", laptops);
+        request.setAttribute("sms", sms);
+        request.setAttribute("tablets", tablets);
         request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
     }
 
     private void smartPhoneHome(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         List<Product> products = productService.findByKeyword("SmartPhone");
+        List<Product> laptops = productService.findByKeyword("laptop");
+        List<Product> sms = productService.findByKeyword("smartphone");
+        List<Product> tablets = productService.findByKeyword("tablet");
         request.setAttribute("active4", "active");
         request.setAttribute("products", products);
+        request.setAttribute("brands", brands);
+        request.setAttribute("laptops", laptops);
+        request.setAttribute("sms", sms);
+        request.setAttribute("tablets", tablets);
         request.getRequestDispatcher("client/view/index.jsp").forward(request, response);
     }
 }
